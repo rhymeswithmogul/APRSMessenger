@@ -8,7 +8,7 @@ Sends messages via APRS.
 The **APRSMessenger** module can send messages, bulletins, group bulletins, and announcements to APRS users, by using the APRS-IS network.
 
 ## APRS Limitations
-Any type of APRS message is limited to 67 characters in length.  If you attempt to use anything longer, this cmdlet will fail.  In addition, no type of message may include the pipe character (`|`) or the tilde (`~`), while messages also cannot include an opening curly brace (`{`).  This is due to limitations of the APRS specification itself.
+Any type of APRS message is limited to 67 characters in length.  If you attempt to use anything longer, this cmdlet will fail.  In addition, no type of message may include the pipe character (`|`) or the tilde (`~`), while messages also cannot include an opening curly brace (`{`).  This is due to limitations of [the APRS specification](http://www.aprs.org/doc/APRS101.PDF) itself.
 
 ## Connecting to APRS-IS
 All of the `Send-*` cmdlets require an APRS-IS server name to be specified.  This is one of the [APRS Tier 2 Network](https://www.aprs2.net) servers.  The default server is `rotate.aprs2.net`, which is any one of their servers;  however, best practice is to use the server that's closest to you.  Select one from the following list:
@@ -86,7 +86,7 @@ PS> Send-APRSGroupBulletin -From GR8CLUB-13 -BulletinID 1 -GroupName "WX" -Messa
 ```
 
 ### When to Use Announcements or Bulletins
-As you've seen, there are multiple ways to broadcast data to multiple APRS users, and differentiating them can be difficult.  In addition, how bulletins and announcements are handled by recipients' radios can never be guaranteed.  In an attempt to clarify things, the APRS specification says this about general bulletins:
+As you've seen, there are multiple ways to broadcast data to multiple APRS users, and differentiating them can be difficult.  In addition, how bulletins and announcements are handled by recipients' radios can never be guaranteed.  In an attempt to clarify things, [the APRS specification](http://www.aprs.org/doc/APRS101.PDF) says this about general bulletins:
 
 > General bulletins are generally transmitted a few times an hour for a few hours, and typically contain time sensitive information (such as weather status).
 

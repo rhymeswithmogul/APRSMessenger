@@ -63,4 +63,4 @@ These passcodes are algorithmically generated and cannot be changed. Please do n
 ## RELATED LINKS
 
 [APRS Passcode Generator](https://apps.magicbug.co.uk/passcode/)
-[about_APRSMessenger]()
+[about_APRSMessenger](https://github.com/rhymeswithmogul/APRSMessenger/blob/main/man/en-US/about_APRSMessenger.md)

@@ -216,5 +216,8 @@ SEE ALSO
     APRS weather data is more your thing, check out my other project:
     https://github.com/rhymeswithmogul/aprs-weather-submit
 
+    You can find the APRS 1.01 specification here:
+    http://www.aprs.org/doc/APRS101.PDF
+
 KEYWORDS
     APRS, APRS-IS, ham radio, amateur radio, emergency communications, emcomm

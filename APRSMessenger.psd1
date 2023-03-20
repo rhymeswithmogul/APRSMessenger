@@ -95,7 +95,7 @@ FileList = @(
     'LICENSE',
     'README.md',
     'APRSMessenger.psd1',
-    'en-US/about_APRSMessenger.txt',
+    'en-US/about_APRSMessenger.help.txt',
     'en-US/APRSMessenger-help.xml',
     'icon/APRSMessenger.png',
     'src/APRSMessenger.psm1'

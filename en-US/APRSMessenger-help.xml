@@ -90,7 +90,7 @@
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>about_APRSMessenger</maml:linkText>
-        <maml:uri></maml:uri>
+        <maml:uri>https://github.com/rhymeswithmogul/APRSMessenger/blob/main/man/en-US/about_APRSMessenger.md</maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>
   </command:command>
