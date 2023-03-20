@@ -1,3 +1,4 @@
+![APRSMessenger logo](https://raw.githubusercontent.com/rhymeswithmogul/APRSMessenger/main/icon/APRSMessenger.png)
 # APRSMessenger
 A PowerShell module to send messages, bulletins, and announcements through the APRS-IS network.
 

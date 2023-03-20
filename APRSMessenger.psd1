@@ -116,7 +116,7 @@ PrivateData = @{
         ProjectUri = 'https://github.com/rhymeswithmogul/APRSMessenger/'
 
         # A URL to an icon representing this module.
-        IconUri = 'https://github.com/rhymeswithmogul/APRSMessenger/blob/main/icon/APRSMessenger.png'
+        IconUri = 'https://raw.githubusercontent.com/rhymeswithmogul/APRSMessenger/main/icon/APRSMessenger.png'
 
         # ReleaseNotes of this module
         ReleaseNotes = 'Initial release'
