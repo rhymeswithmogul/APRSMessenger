@@ -1,0 +1,1325 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<helpItems schema="maml" xmlns="http://msh">
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Get-APRSISPasscode</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>APRSISPasscode</command:noun>
+      <maml:description>
+        <maml:para>Generates an APRS-IS passcode for a given callsign.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>To send a message to the APRS-IS network, a user must authenticate with a procedurally-generated password.  This cmdlet can create that.</maml:para>
+      <maml:para>Note that this module's Send-* cmdlets will call this function for you.  This is merely provided as a convenience.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-APRSISPasscode</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="Call, InputObject">
+          <maml:name>Callsign</maml:name>
+          <maml:description>
+            <maml:para>Your callsign, with or without an SSID.  If you specify an SSID, it will be ignored, as it has no bearing on the generated passcode.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="Call, InputObject">
+        <maml:name>Callsign</maml:name>
+        <maml:description>
+          <maml:para>Your callsign, with or without an SSID.  If you specify an SSID, it will be ignored, as it has no bearing on the generated passcode.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.UInt16</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para>These passcodes are algorithmically generated and cannot be changed. Please do not use this knowledge for evil.</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-APRSISPasscode W1AW
+25988</dev:code>
+        <dev:remarks>
+          <maml:para>If you happen to be working at ARRL headquarters and you need to know your passcode, this is how you could find it out.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/rhymeswithmogul/APRSMessenger/blob/main/man/en-US/Get-APRSISPasscode.md</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>APRS Passcode Generator</maml:linkText>
+        <maml:uri>https://apps.magicbug.co.uk/passcode/</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>about_APRSMessenger</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Send-APRSAnnouncement</command:name>
+      <command:verb>Send</command:verb>
+      <command:noun>APRSAnnouncement</command:noun>
+      <maml:description>
+        <maml:para>Sends an APRS announcement to the APRS-IS network.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>This cmdlet will create and send an APRS announcement to the APRS-IS network.  If you do not specify a server and/or port name, the packet will be printed to the screen instead.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Send-APRSAnnouncement</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>From</maml:name>
+          <maml:description>
+            <maml:para>The sender's callsign, with or without an SSID.  This will almost always be yours or your club's callsign.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>AnnouncementID</maml:name>
+          <maml:description>
+            <maml:para>You must specify an announcement identifier.  This is a single uppercase letter.</maml:para>
+          </maml:description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">A</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">B</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">C</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">D</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">E</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">F</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">G</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">H</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">I</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">J</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">K</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">L</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">M</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">N</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">O</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">P</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Q</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">R</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">S</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">T</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">U</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">V</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">W</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">X</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Y</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Z</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">Char</command:parameterValue>
+          <dev:type>
+            <maml:name>Char</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="2" aliases="InputObject, MessageText, Text">
+          <maml:name>Message</maml:name>
+          <maml:description>
+            <maml:para>The announcement text.  It may be up to 67 characters in length, and can contain any ASCII characters except for pipe ('|') and tilde ('~').</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+          <maml:name>Confirm</maml:name>
+          <maml:description>
+            <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Force</maml:name>
+          <maml:description>
+            <maml:para>Send this announcement via APRS-IS without confirming.  This will only happen if your $ConfirmPreference is set to "Low".</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Port</maml:name>
+          <maml:description>
+            <maml:para>The TCP port used to connect to the APRS-IS server.  By default, this is port 14580.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">UInt16</command:parameterValue>
+          <dev:type>
+            <maml:name>UInt16</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>14580</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Server</maml:name>
+          <maml:description>
+            <maml:para>The fully-qualified domain name of the APRS-IS server.  By default, rotate.aprs2.net is used, but it is best practice to provide your regional server's name.</maml:para>
+          </maml:description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">asia.aprs2.net</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">aunz.aprs2.net</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">euro.aprs2.net</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">noam.aprs2.net</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">rotate.aprs2.net</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">soam.aprs2.net</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>rotate.aprs2.net</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
+          <maml:name>WhatIf</maml:name>
+          <maml:description>
+            <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run, and no data is sent to APRS-IS.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <maml:name>AnnouncementID</maml:name>
+        <maml:description>
+          <maml:para>You must specify an announcement identifier.  This is a single uppercase letter.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Char</command:parameterValue>
+        <dev:type>
+          <maml:name>Char</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+        <maml:name>Confirm</maml:name>
+        <maml:description>
+          <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Force</maml:name>
+        <maml:description>
+          <maml:para>Send this announcement via APRS-IS without confirming.  This will only happen if your $ConfirmPreference is set to "Low".</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>From</maml:name>
+        <maml:description>
+          <maml:para>The sender's callsign, with or without an SSID.  This will almost always be yours or your club's callsign.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="2" aliases="InputObject, MessageText, Text">
+        <maml:name>Message</maml:name>
+        <maml:description>
+          <maml:para>The announcement text.  It may be up to 67 characters in length, and can contain any ASCII characters except for pipe ('|') and tilde ('~').</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Port</maml:name>
+        <maml:description>
+          <maml:para>The TCP port used to connect to the APRS-IS server.  By default, this is port 14580.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">UInt16</command:parameterValue>
+        <dev:type>
+          <maml:name>UInt16</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>14580</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Server</maml:name>
+        <maml:description>
+          <maml:para>The fully-qualified domain name of the APRS-IS server.  By default, rotate.aprs2.net is used, but it is best practice to provide your regional server's name.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>rotate.aprs2.net</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
+        <maml:name>WhatIf</maml:name>
+        <maml:description>
+          <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run, and no data is sent to APRS-IS.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>This cmdlet can accept message data through the pipeline.</maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Void</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>If you specify APRS-IS server information, the group bulletin will be sent to the APRS-IS network.  No data is returned to the pipeline.</maml:para>
+        </maml:description>
+      </command:returnValue>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>If you do not specify APRS-IS server information, the message packet will be returned.  You will have to send it via some other manner.</maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para>Announcements are typically made for situations leading up to an event, in contrast to bulletins which are typically used within the event.</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Send-APRSAnnouncement -From "GR8CLUB" -AnnouncementID "S" -Message "There will be a SKYWARN net on GreatClub's repeater Sunday at 8:00 PM." -Server noam.aprs2.net</dev:code>
+        <dev:remarks>
+          <maml:para>Send an announcement to the APRS-IS network, advertising GreatClub's weekly SKYWARN net.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/rhymeswithmogul/APRSMessenger/blob/main/man/en-US/Send-APRSAnnouncement.md</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Send-APRSBulletin</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Send-APRSGroupBulletin</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Send-APRSMessage</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Send-APRSBulletin</command:name>
+      <command:verb>Send</command:verb>
+      <command:noun>APRSBulletin</command:noun>
+      <maml:description>
+        <maml:para>Sends an APRS bulletin.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>This cmdlet will generate and send an APRS bulletin with a given identifying number.</maml:para>
+      <maml:para>Specify an APRS-IS server and/or port in order to send it via APRS-IS;  otherwise, it will be printed to the screen.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Send-APRSBulletin</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>From</maml:name>
+          <maml:description>
+            <maml:para>The sender's callsign, with or without an SSID.  This will almost always be yours or your club's callsign.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>BulletinID</maml:name>
+          <maml:description>
+            <maml:para>Provide a bulletin identifier between zero and nine (inclusive).  The identifier is not defined in the APRS specification, and should be interpreted by the receiver.</maml:para>
+          </maml:description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">0</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">1</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">2</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">3</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">4</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">5</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">6</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">7</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">8</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">9</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
+          <dev:type>
+            <maml:name>UInt32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="2" aliases="InputObject, MessageText, Text">
+          <maml:name>Message</maml:name>
+          <maml:description>
+            <maml:para>The bulletin text.  Bulletin text may be up to 67 characters in length, and can contain any ASCII characters except for pipe ('|') and tilde ('~').</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+          <maml:name>Confirm</maml:name>
+          <maml:description>
+            <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Force</maml:name>
+          <maml:description>
+            <maml:para>Send this bulletin via APRS-IS without confirming.  This will only happen if your $ConfirmPreference is set to "Low".</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Port</maml:name>
+          <maml:description>
+            <maml:para>The TCP port used to connect to the APRS-IS server.  By default, this is port 14580.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">UInt16</command:parameterValue>
+          <dev:type>
+            <maml:name>UInt16</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>14580</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Server</maml:name>
+          <maml:description>
+            <maml:para>The fully-qualified domain name of the APRS-IS server.  By default, rotate.aprs2.net is used, but it is best practice to provide your regional server's name.</maml:para>
+          </maml:description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">asia.aprs2.net</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">aunz.aprs2.net</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">euro.aprs2.net</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">noam.aprs2.net</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">rotate.aprs2.net</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">soam.aprs2.net</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>rotate.aprs2.net</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
+          <maml:name>WhatIf</maml:name>
+          <maml:description>
+            <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run, and no data is sent to APRS-IS.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <maml:name>BulletinID</maml:name>
+        <maml:description>
+          <maml:para>Provide a bulletin identifier between zero and nine (inclusive).  The identifier is not defined in the APRS specification, and should be interpreted by the receiver.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
+        <dev:type>
+          <maml:name>UInt32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+        <maml:name>Confirm</maml:name>
+        <maml:description>
+          <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Force</maml:name>
+        <maml:description>
+          <maml:para>Send this bulletin via APRS-IS without confirming.  This will only happen if your $ConfirmPreference is set to "Low".</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>From</maml:name>
+        <maml:description>
+          <maml:para>The sender's callsign, with or without an SSID.  This will almost always be yours or your club's callsign.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="2" aliases="InputObject, MessageText, Text">
+        <maml:name>Message</maml:name>
+        <maml:description>
+          <maml:para>The bulletin text.  Bulletin text may be up to 67 characters in length, and can contain any ASCII characters except for pipe ('|') and tilde ('~').</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Port</maml:name>
+        <maml:description>
+          <maml:para>The TCP port used to connect to the APRS-IS server.  By default, this is port 14580.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">UInt16</command:parameterValue>
+        <dev:type>
+          <maml:name>UInt16</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>14580</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Server</maml:name>
+        <maml:description>
+          <maml:para>The fully-qualified domain name of the APRS-IS server.  By default, rotate.aprs2.net is used, but it is best practice to provide your regional server's name.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>rotate.aprs2.net</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
+        <maml:name>WhatIf</maml:name>
+        <maml:description>
+          <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run, and no data is sent to APRS-IS.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>This cmdlet can accept message data through the pipeline.</maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Void</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>If you specify APRS-IS server information, the group bulletin will be sent to the APRS-IS network.  No data is returned to the pipeline.</maml:para>
+        </maml:description>
+      </command:returnValue>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>If you do not specify APRS-IS server information, the message packet will be returned.  You will have to send it via some other manner.</maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para>General bulletins are generally transmitted a few times an hour for a few hours, and typically contain time-sensitive infrmation (such as weather status).  For situations leading up an event, you should use an announcement.</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Send-APRSBulletin -From GR8CLUB -BulletinID 2 -Message "Great Club's weekly check-in net will start at 7:00 PM on our repeater."</dev:code>
+        <dev:remarks>
+          <maml:para>Send an APRS bulletin with ID number 2 and the provided message.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/rhymeswithmogul/APRSMessenger/blob/main/man/en-US/Send-APRSBulletin.md</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Send-APRSGroupBulletin</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Send-APRSAnnouncement</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Send-APRSMessage</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Send-APRSGroupBulletin</command:name>
+      <command:verb>Send</command:verb>
+      <command:noun>APRSGroupBulletin</command:noun>
+      <maml:description>
+        <maml:para>Sends an APRS bulletin with a specified group name.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>This cmdlet will generate and send an APRS bulletin with a given identifying number, to a named group.</maml:para>
+      <maml:para>Specify an APRS-IS server and/or port in order to send it via APRS-IS;  otherwise, it will be printed to the screen.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Send-APRSGroupBulletin</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>From</maml:name>
+          <maml:description>
+            <maml:para>The sender's callsign, with or without an SSID.  This will almost always be yours or your club's callsign.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>BulletinID</maml:name>
+          <maml:description>
+            <maml:para>Provide a bulletin identifier between zero and nine (inclusive).  The identifier is not defined in the APRS specification, and should be interpreted by the receiver.</maml:para>
+          </maml:description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">0</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">1</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">2</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">3</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">4</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">5</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">6</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">7</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">8</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">9</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
+          <dev:type>
+            <maml:name>UInt32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
+          <maml:name>GroupName</maml:name>
+          <maml:description>
+            <maml:para>Provide a group name.  Group names can be up to five alphanumeric characters.</maml:para>
+            <maml:para>From the APRS specification:  "A receiving station can specify a list of bulletin groups of interest.  The list is defined internally by the user at the receiving station.  If a group is selected from the list, the station will only copy bulletins for that group, plus any general bulletins.  If the list is empty, all bulletins are received and generate alerts."</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="3" aliases="InputObject, MessageText, Text">
+          <maml:name>Message</maml:name>
+          <maml:description>
+            <maml:para>The bulletin text.  Bulletin text may be up to 67 characters in length, and can contain any ASCII characters except for pipe ('|') and tilde ('~').</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+          <maml:name>Confirm</maml:name>
+          <maml:description>
+            <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Force</maml:name>
+          <maml:description>
+            <maml:para>Send this bulletin via APRS-IS without confirming.  This will only happen if your $ConfirmPreference is set to "Low".</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Port</maml:name>
+          <maml:description>
+            <maml:para>The TCP port used to connect to the APRS-IS server.  By default, this is port 14580.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">UInt16</command:parameterValue>
+          <dev:type>
+            <maml:name>UInt16</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>14580</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Server</maml:name>
+          <maml:description>
+            <maml:para>The fully-qualified domain name of the APRS-IS server.  By default, rotate.aprs2.net is used, but it is best practice to provide your regional server's name.</maml:para>
+          </maml:description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">asia.aprs2.net</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">aunz.aprs2.net</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">euro.aprs2.net</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">noam.aprs2.net</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">rotate.aprs2.net</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">soam.aprs2.net</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>rotate.aprs2.net</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
+          <maml:name>WhatIf</maml:name>
+          <maml:description>
+            <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run, and no data is sent to APRS-IS.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <maml:name>BulletinID</maml:name>
+        <maml:description>
+          <maml:para>Provide a bulletin identifier between zero and nine (inclusive).  The identifier is not defined in the APRS specification, and should be interpreted by the receiver.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
+        <dev:type>
+          <maml:name>UInt32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+        <maml:name>Confirm</maml:name>
+        <maml:description>
+          <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Force</maml:name>
+        <maml:description>
+          <maml:para>Send this bulletin via APRS-IS without confirming.  This will only happen if your $ConfirmPreference is set to "Low".</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>From</maml:name>
+        <maml:description>
+          <maml:para>The sender's callsign, with or without an SSID.  This will almost always be yours or your club's callsign.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
+        <maml:name>GroupName</maml:name>
+        <maml:description>
+          <maml:para>Provide a group name.  Group names can be up to five alphanumeric characters.</maml:para>
+          <maml:para>From the APRS specification:  "A receiving station can specify a list of bulletin groups of interest.  The list is defined internally by the user at the receiving station.  If a group is selected from the list, the station will only copy bulletins for that group, plus any general bulletins.  If the list is empty, all bulletins are received and generate alerts."</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="3" aliases="InputObject, MessageText, Text">
+        <maml:name>Message</maml:name>
+        <maml:description>
+          <maml:para>The bulletin text.  Bulletin text may be up to 67 characters in length, and can contain any ASCII characters except for pipe ('|') and tilde ('~').</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Port</maml:name>
+        <maml:description>
+          <maml:para>The TCP port used to connect to the APRS-IS server.  By default, this is port 14580.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">UInt16</command:parameterValue>
+        <dev:type>
+          <maml:name>UInt16</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>14580</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Server</maml:name>
+        <maml:description>
+          <maml:para>The fully-qualified domain name of the APRS-IS server.  By default, rotate.aprs2.net is used, but it is best practice to provide your regional server's name.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>rotate.aprs2.net</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
+        <maml:name>WhatIf</maml:name>
+        <maml:description>
+          <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run, and no data is sent to APRS-IS.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>This cmdlet can accept message data through the pipeline.</maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Void</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>If you specify APRS-IS server information, the group bulletin will be sent to the APRS-IS network.  No data is returned to the pipeline.</maml:para>
+        </maml:description>
+      </command:returnValue>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>If you do not specify APRS-IS server information, the message packet will be returned.  You will have to send it via some other manner.</maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para>General and group bulletins are generally transmitted a few times an hour for a few hours, and typically contain time-sensitive infrmation (such as weather status).  For situations leading up an event, you should use an announcement.</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Send-APRSGropuBulletin -From GR8CLUB -BulletinID 0 -GroupName "NET" -Message "Send CQ [space] msg to GR8CLUB to check into GreatClub's APRS net." -Force</dev:code>
+        <dev:remarks>
+          <maml:para>Send an APRS bulletin with ID number 0 to group NET and the provided message.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/rhymeswithmogul/APRSMessenger/blob/main/man/en-US/Send-APRSGroupBulletin.md</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Send-APRSBulletin</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Send-APRSAnnouncement</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Send-APRSMessage</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Send-APRSMessage</command:name>
+      <command:verb>Send</command:verb>
+      <command:noun>APRSMessage</command:noun>
+      <maml:description>
+        <maml:para>Sends a message to another user on the APRS network.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>This cmdlet will send a message to another APRS user.  Optionally, when sending via APRS-IS, an acknowledgement can be requested from the recipient.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Send-APRSMessage</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>From</maml:name>
+          <maml:description>
+            <maml:para>The sender's callsign, with or without an SSID.  This will almost always be yours or your club's callsign.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>To</maml:name>
+          <maml:description>
+            <maml:para>The recipient's callsign, or any other recipient name recognized by APRS.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="2" aliases="InputObject, MessageText, Text">
+          <maml:name>Message</maml:name>
+          <maml:description>
+            <maml:para>The message text.  It may be up to 67 characters in length, and can contain any ASCII characters except for pipe ('|'), tilde ('~'), and the opening curly brace ('{').</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="Acknowledgment, Acknowledgement">
+          <maml:name>Acknowledge</maml:name>
+          <maml:description>
+            <maml:para>If this parameter is specified, the recipient's radio will be asked to confirm or reject the incoming message.  Specify a five-character message identifier.  Your radio should receive a message with the same identifier:  for message E420, you will receive "ackE420" if they received it or "rejE420" if they did not.</maml:para>
+            <maml:para>While you can request acknowledgements with this cmdlet, you will need additional hardware to receive these responses.  Additionally, the recipient's radio must support acknowledgements.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+          <maml:name>Confirm</maml:name>
+          <maml:description>
+            <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Force</maml:name>
+          <maml:description>
+            <maml:para>Send this message via APRS-IS without confirming.  This will only happen if your $ConfirmPreference is set to "Low".</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Port</maml:name>
+          <maml:description>
+            <maml:para>The TCP port used to connect to the APRS-IS server.  By default, this is port 14580.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">UInt16</command:parameterValue>
+          <dev:type>
+            <maml:name>UInt16</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>14580</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Server</maml:name>
+          <maml:description>
+            <maml:para>The fully-qualified domain name of the APRS-IS server.  By default, rotate.aprs2.net is used, but it is best practice to provide your regional server's name.</maml:para>
+          </maml:description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">asia.aprs2.net</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">aunz.aprs2.net</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">euro.aprs2.net</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">noam.aprs2.net</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">rotate.aprs2.net</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">soam.aprs2.net</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>rotate.aprs2.net</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
+          <maml:name>WhatIf</maml:name>
+          <maml:description>
+            <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run, and no data is sent to APRS-IS.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="Acknowledgment, Acknowledgement">
+        <maml:name>Acknowledge</maml:name>
+        <maml:description>
+          <maml:para>If this parameter is specified, the recipient's radio will be asked to confirm or reject the incoming message.  Specify a five-character message identifier.  Your radio should receive a message with the same identifier:  for message E420, you will receive "ackE420" if they received it or "rejE420" if they did not.</maml:para>
+          <maml:para>While you can request acknowledgements with this cmdlet, you will need additional hardware to receive these responses.  Additionally, the recipient's radio must support acknowledgements.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+        <maml:name>Confirm</maml:name>
+        <maml:description>
+          <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Force</maml:name>
+        <maml:description>
+          <maml:para>Send this message via APRS-IS without confirming.  This will only happen if your $ConfirmPreference is set to "Low".</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>From</maml:name>
+        <maml:description>
+          <maml:para>The sender's callsign, with or without an SSID.  This will almost always be yours or your club's callsign.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="2" aliases="InputObject, MessageText, Text">
+        <maml:name>Message</maml:name>
+        <maml:description>
+          <maml:para>The message text.  It may be up to 67 characters in length, and can contain any ASCII characters except for pipe ('|'), tilde ('~'), and the opening curly brace ('{').</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Port</maml:name>
+        <maml:description>
+          <maml:para>The TCP port used to connect to the APRS-IS server.  By default, this is port 14580.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">UInt16</command:parameterValue>
+        <dev:type>
+          <maml:name>UInt16</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>14580</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Server</maml:name>
+        <maml:description>
+          <maml:para>The fully-qualified domain name of the APRS-IS server.  By default, rotate.aprs2.net is used, but it is best practice to provide your regional server's name.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>rotate.aprs2.net</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <maml:name>To</maml:name>
+        <maml:description>
+          <maml:para>The recipient's callsign, or any other recipient name recognized by APRS.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
+        <maml:name>WhatIf</maml:name>
+        <maml:description>
+          <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run, and no data is sent to APRS-IS.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>This cmdlet can accept message data through the pipeline.</maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Void</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>If you specify APRS-IS server information, the group bulletin will be sent to the APRS-IS network.  No data is returned to the pipeline.</maml:para>
+        </maml:description>
+      </command:returnValue>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>If you do not specify APRS-IS server information, the message packet will be returned.  You will have to send it via some other manner.</maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para>Messages are sent to one recipient.  For contacting multiple people at once, consider using a bulletin, group bulletin, or announcement instead.</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Send-APRSMessage -From Y0URCALL -To FR1END -Message "Hey, how's it going?" -Server noam.aprs2.net</dev:code>
+        <dev:remarks>
+          <maml:para>Sends an APRS message with the specified text to the holder of the (fictitious) call sign FR1END.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>----------------- Example 2: Via the Pipeline -----------------</maml:title>
+        <dev:code>PS C:\&gt; $jokes | Get-Random | Send-APRSMessage -From Y0URCALL -To FR1END -Server noam.aprs2.net</dev:code>
+        <dev:remarks>
+          <maml:para>Sends a random joke from a specified list of jokes to the holder of the (fictitious) call sign FR1END.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>----------------- Example 3: Acknowledgements -----------------</maml:title>
+        <dev:code>PS C:\&gt; Send-APRSMessage -From Y0URCALL -To FR1END -Message "This is important!" -Acknowledgement 69 -Server noam.aprs2.net</dev:code>
+        <dev:remarks>
+          <maml:para>Sends a message to the holder of the (fictitious) call sign FR1END, tagging this as message #69.  If the recipient's radio supports this feature, you will receive a reply stating if they acknowledged or rejected it.  Note that this PowerShell module does not listen for replies, so you will need another APRS device (such as a radio) to listen for a response.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/rhymeswithmogul/APRSMessenger/blob/main/man/en-US/Send-APRSMessage.md</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Send-APRSBulletin</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Send-APRSGroupBulletin</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Send-APRSAnnouncement</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+</helpItems>
