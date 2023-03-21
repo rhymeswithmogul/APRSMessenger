@@ -6,6 +6,7 @@
  ![PowerShell Gallery](https://img.shields.io/powershellgallery/p/APRSMessenger)
  ![Download from PowerShell Gallery](https://img.shields.io/powershellgallery/dt/APRSMessenger)
 ](https://www.powershellgallery.com/packages/APRSMessenger/)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/rhymeswithmogul/APRSMessenger/run-pester-tests.yaml)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
 A PowerShell module to send messages, bulletins, and announcements through the APRS-IS network.
