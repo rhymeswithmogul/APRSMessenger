@@ -1,4 +1,4 @@
-![APRSMessenger logo](https://raw.githubusercontent.com/rhymeswithmogul/APRSMessenger/main/icon/APRSMessenger.png)
+![APRSMessenger banner](https://raw.githubusercontent.com/rhymeswithmogul/APRSMessenger/main/.github/repository-open-graph-template.png)
 
 # APRSMessenger
 
