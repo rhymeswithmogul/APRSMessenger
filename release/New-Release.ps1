@@ -13,8 +13,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with APRSMessenger. If not, see <https://www.gnu.org/licenses/>. 
 
-#Requires -Module Microsoft.PowerShell.Security
-#Requires -Module Pester
+#Requires -Module Microsoft.PowerShell.Security, PSScriptAnalyzer, @{ModuleName='Pester';ModuleVersion='5.0.0'}
 
 If (-Not $IsWindows) {
 	Throw [PlatformNotSupportedException]::new('This script requires Microsoft Windows.')
@@ -28,8 +27,9 @@ $TempFile = New-TemporaryFile
 Remove-Item -Path $TempFile
 $DestinationPath = (Join-Path -Path $env:Temp -ChildPath $TempFile.Name)
 
+Write-Output "Copying module to $DestinationPath"
 New-Item -Path $DestinationPath -ItemType Directory -ErrorAction Stop
-Copy-Item -Path .. -Destination $DestinationPath -Recurse -Exclude @(
+Copy-Item -Path . -Destination $DestinationPath -Recurse -Exclude @(
 	'.git*',		# This can be retrieved from GitHub.
 	'coverage.xml'	# junk
 	'icon',			# An icon URI is contained in the module manifest.
@@ -37,7 +37,7 @@ Copy-Item -Path .. -Destination $DestinationPath -Recurse -Exclude @(
 	'release',		# You don't need this script.  Only I do.
 	'INSTALL.md'	# Install-Module handles installation for the user.
 )
-Push-Location -Path $DestinationPath
+Push-Location -Path (Join-Path -Path $DestinationPath -ChildPath 'APRSMessenger')
 #endregion
 
 #region Sign all script files.
@@ -45,24 +45,29 @@ Push-Location -Path $DestinationPath
 # Since the command's default parameters are defined in my shell, and my private
 # key requires protection, there are no secrets to hide in this script.  This
 # will silently fail on all other computers except mine.
-
-Get-ChildItem -Recurse -Include @('*.ps.?1') | ForEach-Object {
-	Set-AuthenticodeSignature $_
+Write-Output "Signing all script files"
+Get-ChildItem -Recurse -Include @('*.ps1','*.ps?1') | ForEach-Object {
+	Set-AuthenticodeSignature $_ | Format-Table -AutoSize
 }
 
+Write-Output "Generating catalog"
 New-FileCatalog -Path . -CatalogFilePath APRSMessenger.cat -CatalogVersion 2.0
 #endregion
 
 #region Invoke PSScriptAnalyzer.
+Write-Output "Calling PSScriptAnalyzer with Gallery settings"
 $analysis = Invoke-ScriptAnalyzer -Path . -Recurse -Settings PSGallery
-If ($null -ne $analysis)
+Write-Output $analysis
+If ($analysis.Count -gt 0)
 {
 	Throw 'Please correct PSScriptAnalyzer errors and try again.'
 }
 #endregion
 
 #region Run Pester tests.
-Invoke-Pester -Path APRSMessenger.Tests.ps1 -CodeCoverage (Join-Path -Path 'src' -ChildPath 'APRSMessenger.psm1')
+Write-Output "Running Pester tests"
+Invoke-Pester
 #endregion
 
-Pop-Location -Path $DestinationPath
+Start-Process -FilePath 'C:\Windows\Explorer.exe' -ArgumentList $DestinationPath
+Pop-Location

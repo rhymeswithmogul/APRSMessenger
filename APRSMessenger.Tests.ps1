@@ -11,7 +11,15 @@
 # details.
 #
 # You should have received a copy of the GNU Affero General Public License
-# along with APRSMessenger. If not, see <https://www.gnu.org/licenses/>. 
+# along with APRSMessenger. If not, see <https://www.gnu.org/licenses/>.
+
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments', 'ExampleAnnouncement',	Justification='Variable is used in another scope.')]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments', 'ExampleBulletin',		Justification='Variable is used in another scope.')]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments', 'ExampleGroupBulletin',	Justification='Variable is used in another scope.')]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments', 'ExampleEmail',			Justification='Variable is used in another scope.')]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments', 'ThisIsATest',			Justification='Variable is used in another scope.')]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments', 'WeatherReport',			Justification='Variable is used in another scope.')]
+Param()
 
 BeforeAll {
 	Import-Module -Name (Join-Path -Path '.' -ChildPath 'APRSMessenger.psd1')
