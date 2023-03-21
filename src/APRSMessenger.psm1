@@ -136,7 +136,7 @@ Function Send-APRSMessage
 	)
 
 	$ToSend = $Message
-	If ($null -ne $Acknowledge)
+	If ($Acknowledge)
 	{
 		$ToSend += "{$Acknowledge"
 	}
