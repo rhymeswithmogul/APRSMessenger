@@ -108,7 +108,7 @@ PrivateData = @{
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries.
-        Tags = @('APRS', 'APRS-IS', 'APRSIS', 'ham', 'amateur', 'radio', 'message', 'messaging', 'bulletin', 'announcement', 'group', 'hamradio')
+        Tags = @('APRS', 'APRS-IS', 'APRSIS', 'ham', 'amateur', 'radio', 'message', 'messaging', 'bulletin', 'announcement', 'group', 'HamRadio', 'EmComm', 'emergency', 'communication', 'cloud')
 
         # A URL to the license for this module.
         LicenseUri = 'https://github.com/rhymeswithmogul/APRSMessenger/blob/main/LICENSE'
