@@ -1,6 +1,8 @@
 ![APRSMessenger logo](https://raw.githubusercontent.com/rhymeswithmogul/APRSMessenger/main/icon/APRSMessenger.png)
+
 # APRSMessenger
 A PowerShell module to send messages, bulletins, and announcements through the APRS-IS network.
+[![PowerShell Gallery Version](https://img.shields.io/powershellgallery/v/APRSMessenger)![PowerShell Gallery](https://img.shields.io/powershellgallery/p/APRSMessenger)![Download from PowerShell Gallery](https://img.shields.io/powershellgallery/dt/APRSMessenger)](https://www.powershellgallery.com/packages/APRSMessenger/)[![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
 ## Messaging
 You can use this module to create APRS messages.  You will need to specify a server name in order to send to APRS-IS.  By default, the username and password are derived from your callsign, and the default port (TCP 14580) is used.
@@ -111,7 +113,7 @@ If ($now.Hour % 12 -eq 0  -and  $now.Minute -eq 0) {
 
 ## Supplemental Reading
 
-### What Is <abbr title="Automated Packet Reporting System">APRS</abbr>?
+### What Is APRS?
 You don't know?  From [the official site](http://aprs.org):
 > The Automatic Packet Reporting System was designed to support rapid, reliable exchange of information for local, tactical real-time information, events or nets.
 
