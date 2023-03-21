@@ -2,6 +2,7 @@
 
 ## Recent
  - Updated module manifest data.
+ - Created release generaetion script.  This is intended to be run by me, when signing a version for the PowerShell Gallery, and is only saved in the Git tree so I don't lose it.
 
 ## Version 1.0.1 (March 20, 2023)
  - FIX: Fixed a bug where APRS packets would be printed to the screen instead of sent to the network.
