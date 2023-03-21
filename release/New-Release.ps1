@@ -1,4 +1,5 @@
 #Requires -Module Microsoft.PowerShell.Security
+#Requires -Module Pester
 
 If (-Not $IsWindows) {
 	Throw [PlatformNotSupportedException]::new('This script requires Microsoft Windows.')
@@ -20,6 +21,7 @@ Copy-Item -Path .. -Destination $DestinationPath -Recurse -Exclude @(
 	'release',		# You don't need this script.  Only I do.
 	'INSTALL.md'	# Install-Module handles installation for the user.
 )
+Push-Location -Path $DestinationPath
 #endregion
 
 #region Sign all script files.
@@ -27,13 +29,24 @@ Copy-Item -Path .. -Destination $DestinationPath -Recurse -Exclude @(
 # Since the command's default parameters are defined in my shell, and my private
 # key requires protection, there are no secrets to hide in this script.  This
 # will silently fail on all other computers except mine.
-Push-Location -Path $DestinationPath
 
-Get-ChildItem -Recurse -Include @('*.ps?1') | ForEach-Object {
+Get-ChildItem -Recurse -Include @('*.ps.?1') | ForEach-Object {
 	Set-AuthenticodeSignature $_
 }
 
 New-FileCatalog -Path . -CatalogFilePath APRSMessenger.cat -CatalogVersion 2.0
+#endregion
+
+#region Invoke PSScriptAnalyzer.
+$analysis = Invoke-ScriptAnalyzer -Path . -Recurse -Settings PSGallery
+If ($null -ne $analysis)
+{
+	Throw 'Please correct PSScriptAnalyzer errors and try again.'
+}
+#endregion
+
+#region Run Pester tests.
+Invoke-Pester -Path APRSMessenger.Tests.ps1 -CodeCoverage (Join-Path -Path 'src' -ChildPath 'APRSMessenger.psm1')
 #endregion
 
 Pop-Location -Path $DestinationPath
