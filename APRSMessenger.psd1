@@ -16,7 +16,7 @@ GUID = 'eb697a0e-8240-497e-8035-7138355b8a04'
 Author = 'Colin Cogle <colin@colincogle.name>'
 
 # Company or vendor of this module
-#CompanyName = 'Unknown'
+CompanyName = $null
 
 # Copyright statement for this module
 Copyright = '(c) 2023 Colin Cogle. All rights reserved.'
