@@ -4,7 +4,7 @@
 RootModule = 'src/APRSMessenger.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.0.1'
+ModuleVersion = '1.0.2'
 
 # Supported PSEditions
 CompatiblePSEditions = @('Core','Desktop')
@@ -89,17 +89,18 @@ AliasesToExport = @(
 
 # List of all files packaged with this module
 FileList = @(
+    'en-US/about_APRSMessenger.help.txt',
+    'en-US/APRSMessenger-help.xml',
+    'icon/APRSMessenger.png',
+    'src/APRSMessenger.psm1',
+    'APRSMessenger.cat',
+    'APRSMessenger.psd1',
     'AUTHORS',
     'ChangeLog.md',
     'INSTALL.md',
     'LICENSE',
     'NEWS.md',
-    'README.md',
-    'APRSMessenger.psd1',
-    'en-US/about_APRSMessenger.help.txt',
-    'en-US/APRSMessenger-help.xml',
-    'icon/APRSMessenger.png',
-    'src/APRSMessenger.psm1'
+    'README.md'
 )
 
 # Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
@@ -108,7 +109,7 @@ PrivateData = @{
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries.
-        Tags = @('APRS', 'APRS-IS', 'APRSIS', 'ham', 'amateur', 'radio', 'message', 'messaging', 'bulletin', 'announcement', 'group', 'HamRadio', 'EmComm', 'emergency', 'communication', 'cloud')
+        Tags = @('APRS', 'APRS-IS', 'APRSIS', 'ham', 'amateur', 'radio', 'message', 'messaging', 'bulletin', 'announcement', 'group', 'HamRadio', 'EmComm', 'emergency', 'communication', 'cloud', 'Windows', 'macOS', 'Linux')
 
         # A URL to the license for this module.
         LicenseUri = 'https://github.com/rhymeswithmogul/APRSMessenger/blob/main/LICENSE'
