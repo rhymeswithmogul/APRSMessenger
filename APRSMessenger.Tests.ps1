@@ -36,7 +36,7 @@ Describe 'Send-APRSBulletin' {
 
 Describe 'Send-APRSGroupBulletin' {
 	It 'Generates a valid bulletin from N0CALL with identifier 1 to group PESTR saying "This is a test."' {
-		Send-APRSGroupBulletin -From 'N0CALL' -BulletinID '1' -Message 'This is a test.' `
+		Send-APRSGroupBulletin -From 'N0CALL' -BulletinID '1' -GroupName 'PESTR' -Message 'This is a test.' `
 			| Should -Be 'N0CALL>BLN1,TCPIP*::BLN1PESTR:This is a test.'
 	}
 }

@@ -33,7 +33,17 @@ Function Send-APRSThing
 		[Switch] $Force
 	)
 
-	$ToSend = "$From>$To,TCPIP*::$($To.PadRight(9)):$Message"
+	#region Handle group bulletins correctly
+	# Group bulletins need to be sent to BLNn, with the
+	# group name included just before the message itself.
+	$MsgTo = $To
+	If ($To -Match "BLN([0-9])(.{5})")
+	{
+		$To = "BLN$($Matches[1])"
+	}
+	#endregion
+
+	$ToSend = "$From>$To,TCPIP*::$($MsgTo.PadRight(9)):$Message"
 
 	If ($PSCmdlet.ParameterSetName -ne 'APRS-IS')
 	{
@@ -189,6 +199,8 @@ Function Send-APRSBulletin
 		[Switch] $Force
 	)
 
+	$To = "BLN$BulletinID"
+
 	$Arguments = @{
 		'From' = $From
 		'To' = $To
@@ -251,6 +263,8 @@ Function Send-APRSGroupBulletin
 		[Switch] $Force
 	)
 
+	$To = "BLN$BulletinID$GroupName"
+
 	$Arguments = @{
 		'From' = $From
 		'To' = $To
@@ -307,6 +321,8 @@ Function Send-APRSAnnouncement
 		[Parameter(ParameterSetName='APRS-IS')]
 		[Switch] $Force
 	)
+
+	$To = "BLN$AnnouncementID"
 
 	$Arguments = @{
 		'From' = $From
