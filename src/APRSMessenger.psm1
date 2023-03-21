@@ -37,9 +37,9 @@ Function Send-APRSThing
 	# Group bulletins need to be sent to BLNn, with the
 	# group name included just before the message itself.
 	$MsgTo = $To
-	If ($To -Match "BLN([0-9])(.{5})")
+	If ($To -Match "^BLN[0-9]")
 	{
-		$To = "BLN$($Matches[1])"
+		$To = "BLN" + $To[3]
 	}
 	#endregion
 
