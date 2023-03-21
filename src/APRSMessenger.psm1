@@ -135,14 +135,19 @@ Function Send-APRSMessage
 		'From' = $From
 		'To' = $To
 		'Message' = $Message
-		'Server' = $Server
-		'Port' = $Port
-		'Force' = $Force
 		'WhatIf' = $WhatIfPreference
 		'Verbose' = $VerbosePreference
 		'Debug' = $DebugPreference
 	}
-	Write-Debug "From:$From To:$To Msg:$Message - Server:${Server}:$Port (Force:$Force)"
+	If ($PSCmdlet.ParameterSetName -eq 'APRS-IS') {
+		$Arguments.Server = $Server
+		$Arguments.Port = $Port
+		$Arguments.Force = $Force
+		Write-Debug "From:$From To:$To Msg:$Message - sending to ${Server}:$Port (Force:$Force)"
+	}
+	Else {
+		Write-Debug "From:$From To:$To Msg:$Message - printing to screen"
+	}
 	Return (Send-APRSThing @Arguments)
 }
 
@@ -186,16 +191,21 @@ Function Send-APRSBulletin
 
 	$Arguments = @{
 		'From' = $From
-		'To' = "BLN$BulletinID"
+		'To' = $To
 		'Message' = $Message
-		'Server' = $Server
-		'Port' = $Port
-		'Force' = $Force
 		'WhatIf' = $WhatIfPreference
 		'Verbose' = $VerbosePreference
 		'Debug' = $DebugPreference
 	}
-	Write-Debug "From:$From To:BLN$BulletinID Msg:$Message - Server:${Server}:$Port (Force:$Force)"
+	If ($PSCmdlet.ParameterSetName -eq 'APRS-IS') {
+		$Arguments.Server = $Server
+		$Arguments.Port = $Port
+		$Arguments.Force = $Force
+		Write-Debug "From:$From To:$To Msg:$Message - sending to ${Server}:$Port (Force:$Force)"
+	}
+	Else {
+		Write-Debug "From:$From To:$To Msg:$Message - printing to screen"
+	}
 	Return (Send-APRSThing @Arguments)
 }
 
@@ -243,16 +253,21 @@ Function Send-APRSGroupBulletin
 
 	$Arguments = @{
 		'From' = $From
-		'To' = "BLN$BulletinID$GroupName"
+		'To' = $To
 		'Message' = $Message
-		'Server' = $Server
-		'Port' = $Port
-		'Force' = $Force
 		'WhatIf' = $WhatIfPreference
 		'Verbose' = $VerbosePreference
 		'Debug' = $DebugPreference
 	}
-	Write-Debug "From:$From To:BLN$BulletinID$GroupName Msg:$Message - Server:${Server}:$Port (Force:$Force)"
+	If ($PSCmdlet.ParameterSetName -eq 'APRS-IS') {
+		$Arguments.Server = $Server
+		$Arguments.Port = $Port
+		$Arguments.Force = $Force
+		Write-Debug "From:$From To:$To Msg:$Message - sending to ${Server}:$Port (Force:$Force)"
+	}
+	Else {
+		Write-Debug "From:$From To:$To Msg:$Message - printing to screen"
+	}
 	Return (Send-APRSThing @Arguments)
 }
 
@@ -295,16 +310,21 @@ Function Send-APRSAnnouncement
 
 	$Arguments = @{
 		'From' = $From
-		'To' = "BLN$AnnouncementID"
+		'To' = $To
 		'Message' = $Message
-		'Server' = $Server
-		'Port' = $Port
-		'Force' = $Force
 		'WhatIf' = $WhatIfPreference
 		'Verbose' = $VerbosePreference
 		'Debug' = $DebugPreference
 	}
-	Write-Debug "From:$From To:BLN$AnnouncementID Msg:$Message - Server:${Server}:$Port (Force:$Force)"
+	If ($PSCmdlet.ParameterSetName -eq 'APRS-IS') {
+		$Arguments.Server = $Server
+		$Arguments.Port = $Port
+		$Arguments.Force = $Force
+		Write-Debug "From:$From To:$To Msg:$Message - sending to ${Server}:$Port (Force:$Force)"
+	}
+	Else {
+		Write-Debug "From:$From To:$To Msg:$Message - printing to screen"
+	}
 	Return (Send-APRSThing @Arguments)
 }
 
