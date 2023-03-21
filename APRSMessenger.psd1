@@ -124,6 +124,7 @@ PrivateData = @{
         # ReleaseNotes of this module
         ReleaseNotes = "## Version 1.0.2 (March 21, 2023)
 - Fixed a bug where all packets would be sent to APRS-IS.  The parameter set name was not honored when control passed into `Send-APRSThing`.
+- Fixed a bug where message acknowledgements would not be included.
 - Fixed a bug where group bulletins would not be sent correctly.
 - Added Pester tests.
 - Updated module manifest data.

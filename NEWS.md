@@ -1,7 +1,7 @@
 # News for APRSMessenger
 
 ## Version 1.0.2 (March 21, 2023)
-In this version, we've fixed bugs related to group bulletins not being received correctly, and to a bug where everything would be sent via APRS-IS.
+In this version, we've fixed bugs related to group bulletins not being received correctly, message acknowledgements not working, and printing packets to the output stream.
 
 We've also included Pester testing to ensure that this app works as intended.
 

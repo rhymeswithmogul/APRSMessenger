@@ -144,7 +144,7 @@ Function Send-APRSMessage
 	$Arguments = @{
 		'From' = $From
 		'To' = $To
-		'Message' = $Message
+		'Message' = $ToSend
 		'WhatIf' = $WhatIfPreference
 		'Verbose' = $VerbosePreference
 		'Debug' = $DebugPreference
@@ -153,10 +153,10 @@ Function Send-APRSMessage
 		$Arguments.Server = $Server
 		$Arguments.Port = $Port
 		$Arguments.Force = $Force
-		Write-Debug "From:$From To:$To Msg:$Message - sending to ${Server}:$Port (Force:$Force)"
+		Write-Debug "From:$From To:$To Msg:$ToSend - sending to ${Server}:$Port (Force:$Force)"
 	}
 	Else {
-		Write-Debug "From:$From To:$To Msg:$Message - printing to screen"
+		Write-Debug "From:$From To:$To Msg:$ToSend - printing to screen"
 	}
 	Return (Send-APRSThing @Arguments)
 }
