@@ -95,6 +95,7 @@ FileList = @(
     'src/APRSMessenger.psm1',
     'APRSMessenger.cat',
     'APRSMessenger.psd1',
+    'APRSMessenger.Tests.ps1',
     'AUTHORS',
     'ChangeLog.md',
     'INSTALL.md',
