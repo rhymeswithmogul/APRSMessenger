@@ -1,5 +1,12 @@
 BeforeAll {
 	Import-Module -Name (Join-Path -Path '.' -ChildPath 'APRSMessenger.psd1')
+
+	$ThisIsATest          = 'This is a test.'
+	$ExampleAnnouncement  = 'My St Helen digi will be QRT this weekend'
+	$ExampleBulletin      = 'Snow expected in Tampa RSN'
+	$ExampleGroupBulletin = 'Stand by your snowplows'
+	$ExampleEmail         = 'msproul@ap.org Test email'
+	$WeatherReport        = 'This is a weather report.'
 }
 
 Describe 'Get-APRSISPasscode' {
@@ -14,33 +21,61 @@ Describe 'Get-APRSISPasscode' {
 }
 
 Describe 'Send-APRSMessage' {
-	It 'Generates a valid message from N0CALL to FR1END with content "Hello World!"' {
-		Send-APRSMessage -From 'N0CALL' -To 'FR1END' -Message 'Hello, World!' `
-			| Should -Be 'N0CALL>FR1END,TCPIP*::FR1END   :Hello, World!'
+	It "Generates a valid message from N0CALL to FR1END with content `"$ThisIsATest`"" {
+		Send-APRSMessage -From 'N0CALL' -To 'FR1END' -Message $ThisIsATest `
+			| Should -Be "N0CALL>FR1END,TCPIP*::FR1END   :$ThisIsATest"
+	}
+	It 'Generates the first example message from page 71 of the APRS 1.01 specification document.' {
+		Send-APRSMessage -From 'N0CALL' -To 'WU2Z' -Message 'Testing' `
+			| Should -Be 'N0CALL>WU2Z,TCPIP*::WU2Z     :Testing'
+	}
+	It 'Generates the second example message from page 71 of the APRS 1.01 specification document.' {
+		Send-APRSMessage -From 'N0CALL' -To 'WU2Z' -Message 'Testing' -Acknowledge 003 `
+			| Should -Be 'N0CALL>WU2Z,TCPIP*::WU2Z     :Testing{003'
+	}
+	It 'Generates the third example message from page 71 of the APRS 1.01 specification document.' {
+		Send-APRSMessage -From 'N0CALL' -To 'EMAIL' -Message $ExampleEmail `
+			| Should -Be "N0CALL>EMAIL,TCPIP*::EMAIL    :$ExampleEmail"
 	}
 }
 
 Describe 'Send-APRSAnnouncement' {
-	It 'Generates a valid announcement from N0CALL with identifier T saying "This is a test."' {
-		Send-APRSAnnouncement -From 'N0CALL' -AnnouncementID 'T' -Message 'This is a test.' `
-			| Should -Be 'N0CALL>BLNT,TCPIP*::BLNT     :This is a test.'
+	It "Generates a valid announcement from N0CALL with identifier T saying `"$ThisIsATest`"." {
+		Send-APRSAnnouncement -From 'N0CALL' -AnnouncementID 'T' -Message $ThisIsATest `
+			| Should -Be "N0CALL>BLNT,TCPIP*::BLNT     :$ThisIsATest"
+	}
+	It "Generates a valid announcement from N0CALL-13 with identifier W saying `"$WeatherReport`"" {
+		Send-APRSAnnouncement -From 'N0CALL-13' -AnnouncementID 'W' -Message $WeatherReport `
+			| Should -Be "N0CALL-13>BLNW,TCPIP*::BLNW     :$WeatherReport"
+	}
+	It 'Generates the example announcement from page 73 of the APRS 1.01 specification.' {
+		Send-APRSAnnouncement -From 'N0CALL' -AnnouncementID 'Q' -Message $ExampleAnnouncement `
+			| Should -Be "N0CALL>BLNQ,TCPIP*::BLNQ     :$ExampleAnnouncement"
 	}
 }
 
 Describe 'Send-APRSBulletin' {
-	It 'Generates a valid bulletin from N0CALL with identifier 1 saying "This is a test."' {
-		Send-APRSBulletin -From 'N0CALL' -BulletinID '1' -Message 'This is a test.' `
-			| Should -Be 'N0CALL>BLN1,TCPIP*::BLN1     :This is a test.'
+	It "Generates a valid bulletin from N0CALL with identifier 1 saying `"$ThisIsATest`"." {
+		Send-APRSBulletin -From 'N0CALL' -BulletinID '1' -Message $ThisIsATest `
+			| Should -Be "N0CALL>BLN1,TCPIP*::BLN1     :$ThisIsATest"
+	}
+	It 'Generates the example general bulletin from page 73 of the APRS 1.01 specification document.' {
+		Send-APRSBulletin -From 'N0CALL' -BulletinID 3 -Message $ExampleBulletin `
+			| Should -Be "N0CALL>BLN3,TCPIP*::BLN3     :$ExampleBulletin"
 	}
 }
 
 Describe 'Send-APRSGroupBulletin' {
-	It 'Generates a valid bulletin from N0CALL with identifier 1 to group PESTR saying "This is a test."' {
-		Send-APRSGroupBulletin -From 'N0CALL' -BulletinID '1' -GroupName 'PESTR' -Message 'This is a test.' `
-			| Should -Be 'N0CALL>BLN1,TCPIP*::BLN1PESTR:This is a test.'
+	It "Generates a valid bulletin from N0CALL with identifier 1 to group PESTR saying `"$ThisIsATest`"." {
+		Send-APRSGroupBulletin -From 'N0CALL' -BulletinID '1' -GroupName 'PESTR' -Message $ThisIsATest `
+			| Should -Be "N0CALL>BLN1,TCPIP*::BLN1PESTR:$ThisIsATest"
+	}
+	It 'Generates the exapmle group bulletin from page 74 of the APRS 1.01 specification.' {
+		Send-APRSGroupBulletin -From 'N0CALL' -BulletinID '4' -GroupName 'WX' -Message $ExampleGroupBulletin `
+			| Should -Be "N0CALL>BLN4,TCPIP*::BLN4WX   :$ExampleGroupBulletin"
 	}
 }
 
 AfterAll {
-	Remove-Module -Name APRSMessenger
+	Remove-Module -Name 'APRSMessenger'
 }
