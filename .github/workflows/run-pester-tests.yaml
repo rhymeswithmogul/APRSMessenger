@@ -11,4 +11,4 @@ jobs:
       - name:  Execute the Pester tests file
         shell: pwsh
         run:   |
-          Invoke-Pester -Name 'APRSMessenger.Test.ps1' -PassThru
+          Invoke-Pester -Name 'APRSMessenger.Tests.ps1' -PassThru

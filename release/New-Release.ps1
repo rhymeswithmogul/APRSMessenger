@@ -15,7 +15,8 @@ $DestinationPath = (Join-Path -Path $env:Temp -ChildPath $TempFile.Name)
 
 New-Item -Path $DestinationPath -ItemType Directory -ErrorAction Stop
 Copy-Item -Path .. -Destination $DestinationPath -Recurse -Exclude @(
-	'.git',			# This can be retrieved from GitHub.
+	'.git*',		# This can be retrieved from GitHub.
+	'coverage.xml'	# junk
 	'icon',			# An icon URI is contained in the module manifest.
 	'man',			# Get-Help should be used instead.
 	'release',		# You don't need this script.  Only I do.
