@@ -1,0 +1,14 @@
+name: Run Pester tests
+on: push
+
+jobs:
+  pester-test:
+    name: Pester test
+    runs-on: ubuntu-latest
+    steps:
+      - name:  Check out repository
+        uses:  actions/checkout@v3
+      - name:  Execute the Pester tests file
+        shell: pwsh
+        run:   |
+          Invoke-Pester -Name 'APRSMessenger.Test.ps1' -PassThru
