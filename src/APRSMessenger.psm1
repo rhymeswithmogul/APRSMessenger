@@ -17,16 +17,19 @@ Function Send-APRSThing
 		[Parameter(Mandatory, Position=2)]
 		[String] $Message,
 
+		[Parameter(ParameterSetName="APRS-IS")]
 		[ValidateSet(
 			'asia.aprs2.net', 'aunz.aprs2.net', 'euro.aprs2.net',
 			'noam.aprs2.net', 'rotate.aprs2.net', 'soam.aprs2.net'
 		)]
 		[String] $Server = 'rotate.aprs2.net',
 
+		[Parameter(ParameterSetName="APRS-IS")]
 		[ValidateNotNullOrEmpty()]
 		[ValidateRange(1,65535)]
 		[UInt16] $Port = 14580,
 
+		[Parameter(ParameterSetName="APRS-IS")]
 		[Switch] $Force
 	)
 
@@ -136,7 +139,10 @@ Function Send-APRSMessage
 		'Port' = $Port
 		'Force' = $Force
 		'WhatIf' = $WhatIfPreference
+		'Verbose' = $VerbosePreference
+		'Debug' = $DebugPreference
 	}
+	Write-Debug "From:$From To:$To Msg:$Message - Server:${Server}:$Port (Force:$Force)"
 	Return (Send-APRSThing @Arguments)
 }
 
@@ -186,7 +192,10 @@ Function Send-APRSBulletin
 		'Port' = $Port
 		'Force' = $Force
 		'WhatIf' = $WhatIfPreference
+		'Verbose' = $VerbosePreference
+		'Debug' = $DebugPreference
 	}
+	Write-Debug "From:$From To:BLN$BulletinID Msg:$Message - Server:${Server}:$Port (Force:$Force)"
 	Return (Send-APRSThing @Arguments)
 }
 
@@ -240,7 +249,10 @@ Function Send-APRSGroupBulletin
 		'Port' = $Port
 		'Force' = $Force
 		'WhatIf' = $WhatIfPreference
+		'Verbose' = $VerbosePreference
+		'Debug' = $DebugPreference
 	}
+	Write-Debug "From:$From To:BLN$BulletinID$GroupName Msg:$Message - Server:${Server}:$Port (Force:$Force)"
 	Return (Send-APRSThing @Arguments)
 }
 
@@ -289,7 +301,10 @@ Function Send-APRSAnnouncement
 		'Port' = $Port
 		'Force' = $Force
 		'WhatIf' = $WhatIfPreference
+		'Verbose' = $VerbosePreference
+		'Debug' = $DebugPreference
 	}
+	Write-Debug "From:$From To:BLN$AnnouncementID Msg:$Message - Server:${Server}:$Port (Force:$Force)"
 	Return (Send-APRSThing @Arguments)
 }
 

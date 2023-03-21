@@ -4,7 +4,7 @@
 RootModule = 'src/APRSMessenger.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.0.0'
+ModuleVersion = '1.0.1'
 
 # Supported PSEditions
 CompatiblePSEditions = @('Core','Desktop')
@@ -120,7 +120,7 @@ PrivateData = @{
         IconUri = 'https://raw.githubusercontent.com/rhymeswithmogul/APRSMessenger/main/icon/APRSMessenger.png'
 
         # ReleaseNotes of this module
-        ReleaseNotes = 'Initial release'
+        ReleaseNotes = 'Bug fixes. Should have been the initial release. My bad.'
 
         # Prerelease string of this module
         # Prerelease = ''
