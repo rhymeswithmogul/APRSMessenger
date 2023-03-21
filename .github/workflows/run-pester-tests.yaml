@@ -2,13 +2,31 @@ name: Run Pester tests
 on: push
 
 jobs:
-  pester-test:
-    name: Pester test
-    runs-on: ubuntu-latest
+  pester-test-pwsh:
+    strategy:
+      matrix:
+        platform: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.platform }}
     steps:
       - name:  Check out repository
         uses:  actions/checkout@v3
-      - name:  Execute the Pester tests file
+      - name:  Run Pester tests (PowerShell)
         shell: pwsh
         run:   |
+          Write-Output "Testing with $($PSVersionTable.PSVersion)."
+          Set-PSRepository 'PSGallery' -InstallationPolicy 'Trusted'
+          Install-Module -Name 'Pester' -Confirm:$false -Force
           Invoke-Pester -Name 'APRSMessenger.Tests.ps1' -PassThru
+  pester-test-posh:
+    runs-on: [windows-latest]
+    steps:
+      - name:  Check out repository
+        uses:  actions/checkout@v3
+      - name:  Run Pester tests (Windows PowerShell)
+        shell: powershell
+        run:   |
+          Write-Output "Testing with $($PSVersionTable.PSVersion)."
+          Set-PSRepository 'PSGallery' -InstallationPolicy 'Trusted'
+          Install-Module -Name 'Pester' -Confirm:$false -Force
+          Invoke-Pester -Name 'APRSMessenger.Tests.ps1' -PassThru
+          If ($Error[0].FullyQualifiedErrorID -eq 'PesterAssertionFailed') {exit 1}
