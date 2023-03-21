@@ -1,8 +1,11 @@
 # News for APRSMessenger
 
 ## Version 1.0.2 (March 21, 2023)
-- This version contains a catalog file to verify its authenticity, and to help it run when execution policies require signed code. 
-- Pester tests are now included.
+In this version, we've fixed bugs related to group bulletins not being received correctly, and to a bug where everything would be sent via APRS-IS.
+
+We've also included Pester testing to ensure that this app works as intended.
+
+Finally, this version contains a catalog file to verify its authenticity, and to help it run when execution policies require signed code. 
 
 ## Version 1.0.1 (March 20, 2023)
 Fixed a very embarrassing bug where APRS messages wouldn't be sent to the APRS-IS network.  Oops.
