@@ -90,9 +90,10 @@ AliasesToExport = @(
 # List of all files packaged with this module
 FileList = @(
     'AUTHORS',
-    'COPYING',
+    'ChangeLog.md',
     'INSTALL.md',
     'LICENSE',
+    'NEWS.md',
     'README.md',
     'APRSMessenger.psd1',
     'en-US/about_APRSMessenger.help.txt',
