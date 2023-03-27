@@ -17,6 +17,8 @@
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments', 'ExampleBulletin',		Justification='Variable is used in another scope.')]
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments', 'ExampleGroupBulletin',	Justification='Variable is used in another scope.')]
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments', 'ExampleEmail',			Justification='Variable is used in another scope.')]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments', 'ModuleHelpFile',		Justification='Variable is used in another scope.')]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments', 'psm1File',				Justification='Variable is used in another scope.')]
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments', 'ThisIsATest',			Justification='Variable is used in another scope.')]
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments', 'WeatherReport',			Justification='Variable is used in another scope.')]
 Param()
@@ -30,6 +32,35 @@ BeforeAll {
 	$ExampleGroupBulletin = 'Stand by your snowplows'
 	$ExampleEmail         = 'msproul@ap.org Test email'
 	$WeatherReport        = 'This is a weather report.'
+}
+
+Context 'Validate the module files' {
+	BeforeAll {
+		$psm1File       = Join-Path -Path 'src'   -ChildPath 'APRSMessenger.psm1'
+		$ModuleHelpFile = Join-Path -Path 'en-US' -ChildPath 'APRSMessenger-help.xml'
+	}
+	It 'has a module manifest' {
+		'APRSMessenger.psd1' | Should -Exist
+	}
+	It 'has a root module' {
+		$psm1File | Should -Exist
+	}
+	It 'has a valid root module' {
+		$code = Get-Content -Path $psm1File -ErrorAction Stop
+		$errors = $null
+		$null = [Management.Automation.PSParser]::Tokenize($code, [ref]$errors)
+		$errors.Count | Should -Be 0
+	}
+	It 'has a conceptual help file' {
+		Join-Path -Path 'en-US' -ChildPath 'about_APRSMessenger.help.txt' | Should -Exist
+	}
+	It 'has a module help file' {
+		$ModuleHelpFile | Should -Exist
+	}
+	It 'has a valid module help file' {
+		$code = [Xml](Get-Content -Path $ModuleHelpFile -ErrorAction Stop)
+		$code.Count | Should -Be 1
+	}
 }
 
 Describe 'Get-APRSISPasscode' {
@@ -93,7 +124,7 @@ Describe 'Send-APRSGroupBulletin' {
 		Send-APRSGroupBulletin -From 'N0CALL' -BulletinID '1' -GroupName 'PESTR' -Message $ThisIsATest `
 			| Should -Be "N0CALL>BLN1,TCPIP*::BLN1PESTR:$ThisIsATest"
 	}
-	It 'Generates the exapmle group bulletin from page 74 of the APRS 1.01 specification.' {
+	It 'Generates the example group bulletin from page 74 of the APRS 1.01 specification.' {
 		Send-APRSGroupBulletin -From 'N0CALL' -BulletinID '4' -GroupName 'WX' -Message $ExampleGroupBulletin `
 			| Should -Be "N0CALL>BLN4,TCPIP*::BLN4WX   :$ExampleGroupBulletin"
 	}
