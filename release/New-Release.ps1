@@ -52,6 +52,7 @@ Get-ChildItem -Recurse -Include @('*.ps1','*.ps?1') | ForEach-Object {
 
 Write-Output "Generating catalog"
 New-FileCatalog -Path . -CatalogFilePath APRSMessenger.cat -CatalogVersion 2.0
+Set-AuthenticodeSignature 'APRSMessenger.cat'
 #endregion
 
 #region Invoke PSScriptAnalyzer.

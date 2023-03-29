@@ -1,5 +1,8 @@
 # News for APRSMessenger
 
+## Version 1.0.4 (March 29, 2023)
+In this version, we've signed the PowerShell Gallery version of this code so that it can load on platforms that require code signing in the execution policy.  Some Pester tests were also added to ensure the module is well-formed.
+
 ## Version 1.0.2 (March 21, 2023)
 In this version, we've fixed bugs related to group bulletins not being received correctly, message acknowledgements not working, and printing packets to the output stream.
 
