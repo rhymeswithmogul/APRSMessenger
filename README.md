@@ -21,12 +21,13 @@ Send-APRSMessage `
 	-Server noam.aprs2.net
 ```
 
-Another example:  to check into the [APRS Thursday net](https://aprsph.net/aprsthursday/), you can do something like this.  Replace `AB12cd` with your location and/or grid square.
+Another example:  to check into the [APRS Thursday net](https://aprsph.net/aprsthursday/), you can do something like this.  Replace `AB12cd` with your location and/or grid square.  Optionally, include `-Latitude` and `-Longitude`, and supported APRS receivers can plot your message on a map.
 
 ```powershell
 Send-APRSMessage `
 	-From N0CALL -To ANSRVR `
 	-Message "CQ HOTG Happy #APRSThursday from AB12cd" `
+	-Latitude 12.34  -Longitude -56.7890
 	-Server rotate.aprs2.net
 ```
 
@@ -61,7 +62,8 @@ To send an APRS announcement to anyone who might be listening for one:
 Send-APRSAnnouncement `
 	-From GR8CLUB `
 	-AnnouncementID 'R' `
-	-Message "We will be providing communications for the road race on Sunday."
+	-Message "We will be providing communications for the road race on Sunday. Meet at the starting line." `
+	-Latitude -12.3456 -Longitude 78.90123
 ```
 
 ## Bulletins

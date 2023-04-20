@@ -145,6 +145,23 @@ Message Types
     bulletins, group bulletins, or announcements over your local area, and see
     how your radio and other peoples' radios handle them.
 
+    POSITION REPORTS
+    To include a latitude and longitude with one of your messages, bulletins,
+    announcements, or group announcements, specify the -Latitude and -Longitude
+    parameters, along with your location in decimal format.
+
+    For example, if I went to ARRL headquarters, I might tell a friend something
+    like this:
+
+    PS>  Send-APRSMessage -From 'W1DNS' -To 'FR1END' -Latitude 41.71479 `
+            -Longitude -72.72721 -Message "You'll never guess where I am!"
+
+    If you omit either -Latitude or -Longitude, that location will be zero.
+
+    Due to limitations of the app, you cannot send a position report from
+    exactly 0°,0°.
+
+
 Example: Putting It All Together
     Here is an example where you could use APRS messaging to manage a club's
     weather station.  Let's assume that a hypothetical Get-WeatherStationData

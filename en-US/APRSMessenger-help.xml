@@ -238,6 +238,30 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Latitude</maml:name>
+          <maml:description>
+            <maml:para>To include a position report, specify the -Latitude and -Longitude parameters, with your location in decimal degrees north.  To specify a location in the Southern Hemisphere, use a negative number.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Single</command:parameterValue>
+          <dev:type>
+            <maml:name>Single</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Longitude</maml:name>
+          <maml:description>
+            <maml:para>To include a position report, specify the -Latitude and -Longitude parameters, with your location in decimal degrees east.  To specify a location in the Western Hemisphere, use a negative number.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Single</command:parameterValue>
+          <dev:type>
+            <maml:name>Single</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
@@ -337,6 +361,30 @@
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Latitude</maml:name>
+        <maml:description>
+          <maml:para>To include a position report, specify the -Latitude and -Longitude parameters, with your location in decimal degrees north.  To specify a location in the Southern Hemisphere, use a negative number.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Single</command:parameterValue>
+        <dev:type>
+          <maml:name>Single</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Longitude</maml:name>
+        <maml:description>
+          <maml:para>To include a position report, specify the -Latitude and -Longitude parameters, with your location in decimal degrees east.  To specify a location in the Western Hemisphere, use a negative number.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Single</command:parameterValue>
+        <dev:type>
+          <maml:name>Single</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
     </command:parameters>
     <command:inputTypes>
       <command:inputType>
@@ -377,6 +425,13 @@
         <dev:code>PS C:\&gt; Send-APRSAnnouncement -From "GR8CLUB" -AnnouncementID "S" -Message "There will be a SKYWARN net on GreatClub's repeater Sunday at 8:00 PM." -Server noam.aprs2.net</dev:code>
         <dev:remarks>
           <maml:para>Send an announcement to the APRS-IS network, advertising GreatClub's weekly SKYWARN net.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Send-APRSAnnouncement -From "GR8CLUB" -AnnouncementID 'R' -Message "Anyone providing emcomm for the road race should meet here." -Latitude 67.890 -Longitude -123.4567</dev:code>
+        <dev:remarks>
+          <maml:para>Send an announcement to the APRS-IS network with a position report included.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -528,6 +583,30 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Latitude</maml:name>
+          <maml:description>
+            <maml:para>To include a position report, specify the -Latitude and -Longitude parameters, with your location in decimal degrees north.  To specify a location in the Southern Hemisphere, use a negative number.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Single</command:parameterValue>
+          <dev:type>
+            <maml:name>Single</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Longitude</maml:name>
+          <maml:description>
+            <maml:para>To include a position report, specify the -Latitude and -Longitude parameters, with your location in decimal degrees east.  To specify a location in the Western Hemisphere, use a negative number.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Single</command:parameterValue>
+          <dev:type>
+            <maml:name>Single</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
@@ -627,6 +706,30 @@
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Latitude</maml:name>
+        <maml:description>
+          <maml:para>To include a position report, specify the -Latitude and -Longitude parameters, with your location in decimal degrees north.  To specify a location in the Southern Hemisphere, use a negative number.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Single</command:parameterValue>
+        <dev:type>
+          <maml:name>Single</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Longitude</maml:name>
+        <maml:description>
+          <maml:para>To include a position report, specify the -Latitude and -Longitude parameters, with your location in decimal degrees east.  To specify a location in the Western Hemisphere, use a negative number.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Single</command:parameterValue>
+        <dev:type>
+          <maml:name>Single</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
     </command:parameters>
     <command:inputTypes>
       <command:inputType>
@@ -667,6 +770,13 @@
         <dev:code>PS C:\&gt; Send-APRSBulletin -From GR8CLUB -BulletinID 2 -Message "Great Club's weekly check-in net will start at 7:00 PM on our repeater."</dev:code>
         <dev:remarks>
           <maml:para>Send an APRS bulletin with ID number 2 and the provided message.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Send-APRSBulletin -From GR8CLUB -BulletinID 3 -Message "Great Club will be meeting at the community center tonight." -Latitude -12.345 -Longitude 67.890</dev:code>
+        <dev:remarks>
+          <maml:para>Sends an APRS bulletin with ID number 3, the provided message, and a position report of 12.345°S, 67.890°E.  Compatible APRS receivers may choose to plot this on a map.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -831,6 +941,30 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Latitude</maml:name>
+          <maml:description>
+            <maml:para>To include a position report, specify the -Latitude and -Longitude parameters, with your location in decimal degrees north.  To specify a location in the Southern Hemisphere, use a negative number.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Single</command:parameterValue>
+          <dev:type>
+            <maml:name>Single</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Longitude</maml:name>
+          <maml:description>
+            <maml:para>To include a position report, specify the -Latitude and -Longitude parameters, with your location in decimal degrees east.  To specify a location in the Western Hemisphere, use a negative number.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Single</command:parameterValue>
+          <dev:type>
+            <maml:name>Single</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
@@ -943,6 +1077,30 @@
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Latitude</maml:name>
+        <maml:description>
+          <maml:para>To include a position report, specify the -Latitude and -Longitude parameters, with your location in decimal degrees north.  To specify a location in the Southern Hemisphere, use a negative number.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Single</command:parameterValue>
+        <dev:type>
+          <maml:name>Single</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Longitude</maml:name>
+        <maml:description>
+          <maml:para>To include a position report, specify the -Latitude and -Longitude parameters, with your location in decimal degrees east.  To specify a location in the Western Hemisphere, use a negative number.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Single</command:parameterValue>
+        <dev:type>
+          <maml:name>Single</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
     </command:parameters>
     <command:inputTypes>
       <command:inputType>
@@ -980,9 +1138,16 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Send-APRSGropuBulletin -From GR8CLUB -BulletinID 0 -GroupName "NET" -Message "Send CQ [space] msg to GR8CLUB to check into GreatClub's APRS net." -Force</dev:code>
+        <dev:code>PS C:\&gt; Send-APRSGroupBulletin -From GR8CLUB -BulletinID 0 -GroupName "NET" -Message "Send CQ [space] msg to GR8CLUB to check into GreatClub's APRS net." -Force</dev:code>
         <dev:remarks>
           <maml:para>Send an APRS bulletin with ID number 0 to group NET and the provided message.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Send-APRSGroupBulletin -From GR8CLUB -BulletinID 1 -GroupName "REPEATER" -Latitude 12.345 -Longitude -67.890 -Message "The repeater at 12.345°N, 67.890°E is down."</dev:code>
+        <dev:remarks>
+          <maml:para>Send an APRS bulletin with ID number 1 to group REPEATER, and include a position report.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -1134,6 +1299,30 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Latitude</maml:name>
+          <maml:description>
+            <maml:para>To include a position report, specify the -Latitude and -Longitude parameters, with your location in decimal degrees north.  To specify a location in the Southern Hemisphere, use a negative number.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Single</command:parameterValue>
+          <dev:type>
+            <maml:name>Single</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Longitude</maml:name>
+          <maml:description>
+            <maml:para>To include a position report, specify the -Latitude and -Longitude parameters, with your location in decimal degrees east.  To specify a location in the Western Hemisphere, use a negative number.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Single</command:parameterValue>
+          <dev:type>
+            <maml:name>Single</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
@@ -1246,6 +1435,30 @@
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Latitude</maml:name>
+        <maml:description>
+          <maml:para>To include a position report, specify the -Latitude and -Longitude parameters, with your location in decimal degrees north.  To specify a location in the Southern Hemisphere, use a negative number.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Single</command:parameterValue>
+        <dev:type>
+          <maml:name>Single</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Longitude</maml:name>
+        <maml:description>
+          <maml:para>To include a position report, specify the -Latitude and -Longitude parameters, with your location in decimal degrees east.  To specify a location in the Western Hemisphere, use a negative number.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Single</command:parameterValue>
+        <dev:type>
+          <maml:name>Single</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
     </command:parameters>
     <command:inputTypes>
       <command:inputType>
@@ -1300,6 +1513,13 @@
         <dev:code>PS C:\&gt; Send-APRSMessage -From Y0URCALL -To FR1END -Message "This is important!" -Acknowledgement 69 -Server noam.aprs2.net</dev:code>
         <dev:remarks>
           <maml:para>Sends a message to the holder of the (fictitious) call sign FR1END, tagging this as message #69.  If the recipient's radio supports this feature, you will receive a reply stating if they acknowledged or rejected it.  Note that this PowerShell module does not listen for replies, so you will need another APRS device (such as a radio) to listen for a response.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>--------------------- Example 4: Positions ---------------------</maml:title>
+        <dev:code>PS C:\&gt; Send-APRSMessage -From 'Y0URCALL' -To 'FR1END' -Latitude 41.71479 -Longitude -72.72721 -Message "Arrived safely at ARRL headquarters!"</dev:code>
+        <dev:remarks>
+          <maml:para>Sends a message to FR1END which includes a position report.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>

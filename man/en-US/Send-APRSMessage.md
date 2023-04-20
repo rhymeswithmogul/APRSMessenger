@@ -14,14 +14,14 @@ Sends a message to another user on the APRS network.
 
 ### ToScreen (Default)
 ```
-Send-APRSMessage [-From] <String> [-To] <String> [-Message] <String> [-Acknowledge <String>] [-WhatIf]
- [-Confirm] [<CommonParameters>]
+Send-APRSMessage [-From] <String> [-To] <String> [-Message] <String> [-Latitude <Single>] [-Longitude <Single>]
+ [-Acknowledge <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### APRS-IS
 ```
-Send-APRSMessage [-From] <String> [-To] <String> [-Message] <String> [-Acknowledge <String>] [-Server <String>]
- [-Port <UInt16>] [-Force] [-WhatIf] [-Confirm] [<CommonParameters>]
+Send-APRSMessage [-From] <String> [-To] <String> [-Message] <String> [-Latitude <Single>] [-Longitude <Single>]
+ [-Acknowledge <String>] [-Server <String>] [-Port <UInt16>] [-Force] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -49,6 +49,13 @@ PS C:\> Send-APRSMessage -From Y0URCALL -To FR1END -Message "This is important!"
 ```
 
 Sends a message to the holder of the (fictitious) call sign FR1END, tagging this as message #69.  If the recipient's radio supports this feature, you will receive a reply stating if they acknowledged or rejected it.  Note that this PowerShell module does not listen for replies, so you will need another APRS device (such as a radio) to listen for a response.
+
+### Example 4: Positions
+```powershell
+PS C:\> Send-APRSMessage -From 'Y0URCALL' -To 'FR1END' -Latitude 41.71479 -Longitude -72.72721 -Message "Arrived safely at ARRL headquarters!"
+```
+
+Sends a message to FR1END which includes a position report.
 
 ## PARAMETERS
 
@@ -183,6 +190,36 @@ The cmdlet is not run, and no data is sent to APRS-IS.
 Type: SwitchParameter
 Parameter Sets: (All)
 Aliases: wi
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Latitude
+To include a position report, specify the -Latitude and -Longitude parameters, with your location in decimal degrees north.  To specify a location in the Southern Hemisphere, use a negative number.
+
+```yaml
+Type: Single
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Longitude
+To include a position report, specify the -Latitude and -Longitude parameters, with your location in decimal degrees east.  To specify a location in the Western Hemisphere, use a negative number.
+
+```yaml
+Type: Single
+Parameter Sets: (All)
+Aliases:
 
 Required: False
 Position: Named

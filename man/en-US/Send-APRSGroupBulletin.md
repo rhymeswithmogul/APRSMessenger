@@ -15,13 +15,14 @@ Sends an APRS bulletin with a specified group name.
 ### ToScreen (Default)
 ```
 Send-APRSGroupBulletin [-From] <String> [-BulletinID] <UInt32> [-GroupName] <String> [-Message] <String>
- [-WhatIf] [-Confirm] [<CommonParameters>]
+ [-Latitude <Single>] [-Longitude <Single>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### APRS-IS
 ```
 Send-APRSGroupBulletin [-From] <String> [-BulletinID] <UInt32> [-GroupName] <String> [-Message] <String>
- [-Server <String>] [-Port <UInt16>] [-Force] [-WhatIf] [-Confirm] [<CommonParameters>]
+ [-Latitude <Single>] [-Longitude <Single>] [-Server <String>] [-Port <UInt16>] [-Force] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -33,10 +34,17 @@ Specify an APRS-IS server and/or port in order to send it via APRS-IS;  otherwis
 
 ### Example 1
 ```powershell
-PS C:\> Send-APRSGropuBulletin -From GR8CLUB -BulletinID 0 -GroupName "NET" -Message "Send CQ [space] msg to GR8CLUB to check into GreatClub's APRS net." -Force
+PS C:\> Send-APRSGroupBulletin -From GR8CLUB -BulletinID 0 -GroupName "NET" -Message "Send CQ [space] msg to GR8CLUB to check into GreatClub's APRS net." -Force
 ```
 
 Send an APRS bulletin with ID number 0 to group NET and the provided message.
+
+### Example 2
+```powershell
+PS C:\> Send-APRSGroupBulletin -From GR8CLUB -BulletinID 1 -GroupName "REPEATER" -Latitude 12.345 -Longitude -67.890 -Message "The repeater at 12.345°N, 67.890°E is down."
+```
+
+Send an APRS bulletin with ID number 1 to group REPEATER, and include a position report.
 
 ## PARAMETERS
 
@@ -172,6 +180,36 @@ The cmdlet is not run, and no data is sent to APRS-IS.
 Type: SwitchParameter
 Parameter Sets: (All)
 Aliases: wi
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Latitude
+To include a position report, specify the -Latitude and -Longitude parameters, with your location in decimal degrees north.  To specify a location in the Southern Hemisphere, use a negative number.
+
+```yaml
+Type: Single
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Longitude
+To include a position report, specify the -Latitude and -Longitude parameters, with your location in decimal degrees east.  To specify a location in the Western Hemisphere, use a negative number.
+
+```yaml
+Type: Single
+Parameter Sets: (All)
+Aliases:
 
 Required: False
 Position: Named

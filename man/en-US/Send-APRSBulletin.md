@@ -14,14 +14,14 @@ Sends an APRS bulletin.
 
 ### ToScreen (Default)
 ```
-Send-APRSBulletin [-From] <String> [-BulletinID] <UInt32> [-Message] <String> [-WhatIf] [-Confirm]
- [<CommonParameters>]
+Send-APRSBulletin [-From] <String> [-BulletinID] <UInt32> [-Message] <String> [-Latitude <Single>]
+ [-Longitude <Single>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### APRS-IS
 ```
-Send-APRSBulletin [-From] <String> [-BulletinID] <UInt32> [-Message] <String> [-Server <String>]
- [-Port <UInt16>] [-Force] [-WhatIf] [-Confirm] [<CommonParameters>]
+Send-APRSBulletin [-From] <String> [-BulletinID] <UInt32> [-Message] <String> [-Latitude <Single>]
+ [-Longitude <Single>] [-Server <String>] [-Port <UInt16>] [-Force] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -37,6 +37,13 @@ PS C:\> Send-APRSBulletin -From GR8CLUB -BulletinID 2 -Message "Great Club's wee
 ```
 
 Send an APRS bulletin with ID number 2 and the provided message.
+
+### Example 2
+```powershell
+PS C:\> Send-APRSBulletin -From GR8CLUB -BulletinID 3 -Message "Great Club will be meeting at the community center tonight." -Latitude -12.345 -Longitude 67.890
+```
+
+Sends an APRS bulletin with ID number 3, the provided message, and a position report of 12.345°S, 67.890°E.  Compatible APRS receivers may choose to plot this on a map.
 
 ## PARAMETERS
 
@@ -155,6 +162,36 @@ The cmdlet is not run, and no data is sent to APRS-IS.
 Type: SwitchParameter
 Parameter Sets: (All)
 Aliases: wi
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Latitude
+To include a position report, specify the -Latitude and -Longitude parameters, with your location in decimal degrees north.  To specify a location in the Southern Hemisphere, use a negative number.
+
+```yaml
+Type: Single
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Longitude
+To include a position report, specify the -Latitude and -Longitude parameters, with your location in decimal degrees east.  To specify a location in the Western Hemisphere, use a negative number.
+
+```yaml
+Type: Single
+Parameter Sets: (All)
+Aliases:
 
 Required: False
 Position: Named

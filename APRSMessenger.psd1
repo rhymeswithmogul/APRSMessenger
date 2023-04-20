@@ -19,7 +19,7 @@
 RootModule = 'src/APRSMessenger.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.0.4'
+ModuleVersion = '1.1.0'
 
 # Supported PSEditions
 CompatiblePSEditions = @('Core','Desktop')
@@ -119,13 +119,17 @@ FileList = @(
     'README.md'
 )
 
-# Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
+# Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable
+# with additional module metadata used by PowerShell.
 PrivateData = @{
 
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries.
-        Tags = @('APRS', 'APRS-IS', 'APRSIS', 'ham', 'amateur', 'radio', 'message', 'messaging', 'bulletin', 'announcement', 'group', 'HamRadio', 'EmComm', 'emergency', 'communication', 'cloud', 'Windows', 'macOS', 'Linux')
+        Tags = @('APRS', 'APRS-IS', 'APRSIS', 'automated', 'packet', 'reporting', 'system', 'ham', 'amateur', 'radio',
+        'message', 'messaging', 'bulletin', 'announcement', 'group', 'HamRadio', 'EmComm', 'emergency', 'communication',
+        'cloud', 'Windows', 'macOS', 'Linux', 'position', 'GPS', 'coordinates', 'latitude', 'longitude', 'location',
+        'APRSThursday')
 
         # A URL to the license for this module.
         LicenseUri = 'https://github.com/rhymeswithmogul/APRSMessenger/blob/main/LICENSE'
@@ -137,16 +141,10 @@ PrivateData = @{
         IconUri = 'https://raw.githubusercontent.com/rhymeswithmogul/APRSMessenger/main/icon/APRSMessenger.png'
 
         # ReleaseNotes of this module
-        ReleaseNotes = "## Version 1.0.2 (March 21, 2023)
-- Fixed a bug where all packets would be sent to APRS-IS.  The parameter set name was not honored when control passed into `Send-APRSThing`.
-- Fixed a bug where message acknowledgements would not be included.
-- Fixed a bug where group bulletins would not be sent correctly.
-- Added Pester tests.
-- Updated module manifest data.
-- Created release generation script.  This is intended to be run by me, when signing a version for the PowerShell Gallery, and is only saved in the Git tree so I don't lose it."
+        ReleaseNotes = "Version 1.1.0 allows positions to be included with all APRS message types."
 
         # Prerelease string of this module
-        Prerelease = 'git'
+        #Prerelease = 'git'
 
         # Flag to indicate whether the module requires explicit user acceptance for install/update/save
         RequireLicenseAcceptance = $false

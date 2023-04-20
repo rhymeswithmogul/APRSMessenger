@@ -32,6 +32,12 @@ Function Send-APRSThing
 		[Parameter(Mandatory, Position=2)]
 		[String] $Message,
 
+		[ValidateRange(-90,90)]
+		[Float] $Latitude,
+
+		[ValidateRange(-180,180)]
+		[Float] $Longitude,
+
 		[Parameter(ParameterSetName="APRS-IS")]
 		[ValidateSet(
 			'asia.aprs2.net', 'aunz.aprs2.net', 'euro.aprs2.net',
@@ -58,7 +64,23 @@ Function Send-APRSThing
 	}
 	#endregion
 
-	$ToSend = "$From>$To,TCPIP*::$($MsgTo.PadRight(9)):$Message"
+	#region Location processing
+	# If the latitude and longitude are both zero, a position report will not
+	# be included.  0,0 is directly over water, so I'd like to hope that someone
+	# won't be messaging from there.  If you can think of a better way, let me
+	# know.
+	#
+	# The two helper functions listed here are at the bottom of this file.
+	$Location = ':'
+	If ($Latitude -ne 0 -or $Longitude -ne 0)
+	{
+		$Location = "={0}/{1}`"" -f `
+						(Convert-LatitudeToAPRSFormat $Latitude),
+						(Convert-LongitudeToAPRSFormat $Longitude)
+	}
+	#endregion
+
+	$ToSend = "$From>$To,TCPIP*:$Location$($MsgTo.PadRight(9)):$Message"
 
 	If ($PSCmdlet.ParameterSetName -ne 'APRS-IS')
 	{
@@ -72,7 +94,10 @@ Function Send-APRSThing
 		$Greeting = "user $From pass $(Get-APRSISPasscode $From) vers $ThisModuleName $ThisModuleVersion"
 		#endregion
 
-		If ($Force -or $PSCmdlet.ShouldProcess("Send a message to $To via APRS-IS", $To, 'Send a message'))
+		If ($null -ne $Location) {
+			$Location = " with coordinates $Latitude,$Longitude"
+		}
+		If ($Force -or $PSCmdlet.ShouldProcess("Send a message to $To via APRS-IS$Location", $To, 'Send a message'))
 		{
 			Try
 			{
@@ -130,6 +155,12 @@ Function Send-APRSMessage
 		[ValidatePattern("[^~\|\{]*")]
 		[String] $Message,
 
+		[ValidateRange(-90,90)]
+		[Float] $Latitude,
+
+		[ValidateRange(-180,180)]
+		[Float] $Longitude,
+
 		[Alias('Acknowledgment', 'Acknowledgement')]
 		[ValidateLength(1,5)]
 		[String] $Acknowledge,
@@ -164,14 +195,21 @@ Function Send-APRSMessage
 		'Verbose' = $VerbosePreference
 		'Debug' = $DebugPreference
 	}
-	If ($PSCmdlet.ParameterSetName -eq 'APRS-IS') {
+	If ($Latitude -ne 0 -or $Longitude -ne 0)
+	{
+		$Arguments.Latitude = $Latitude
+		$Arguments.Longitude = $Longitude
+		$Location = " ($Latitude,$Longitude)"
+	}
+	If ($PSCmdlet.ParameterSetName -eq 'APRS-IS')
+	{
 		$Arguments.Server = $Server
 		$Arguments.Port = $Port
 		$Arguments.Force = $Force
-		Write-Debug "From:$From To:$To Msg:$ToSend - sending to ${Server}:$Port (Force:$Force)"
+		Write-Debug "From:$From$Location To:$To Msg:$ToSend - sending to ${Server}:$Port (Force:$Force)"
 	}
 	Else {
-		Write-Debug "From:$From To:$To Msg:$ToSend - printing to screen"
+		Write-Debug "From:$From$Location To:$To Msg:$ToSend - printing to screen"
 	}
 	Return (Send-APRSThing @Arguments)
 }
@@ -197,6 +235,12 @@ Function Send-APRSBulletin
 		[ValidateLength(0,67)]
 		[ValidatePattern("[^~\|]*")]
 		[String] $Message,
+
+		[ValidateRange(-90,90)]
+		[Float] $Latitude,
+
+		[ValidateRange(-180,180)]
+		[Float] $Longitude,
 
 		[Parameter(ParameterSetName='APRS-IS')]
 		[ValidateSet(
@@ -224,14 +268,20 @@ Function Send-APRSBulletin
 		'Verbose' = $VerbosePreference
 		'Debug' = $DebugPreference
 	}
+	If ($Latitude -ne 0 -or $Longitude -ne 0)
+	{
+		$Arguments.Latitude = $Latitude
+		$Arguments.Longitude = $Longitude
+		$Location = " ($Latitude,$Longitude)"
+	}
 	If ($PSCmdlet.ParameterSetName -eq 'APRS-IS') {
 		$Arguments.Server = $Server
 		$Arguments.Port = $Port
 		$Arguments.Force = $Force
-		Write-Debug "From:$From To:$To Msg:$Message - sending to ${Server}:$Port (Force:$Force)"
+		Write-Debug "From:$From$Location To:$To Msg:$Message - sending to ${Server}:$Port (Force:$Force)"
 	}
 	Else {
-		Write-Debug "From:$From To:$To Msg:$Message - printing to screen"
+		Write-Debug "From:$From$Location To:$To Msg:$Message - printing to screen"
 	}
 	Return (Send-APRSThing @Arguments)
 }
@@ -262,6 +312,12 @@ Function Send-APRSGroupBulletin
 		[ValidatePattern("[^~\|]*")]
 		[String] $Message,
 
+		[ValidateRange(-90,90)]
+		[Float] $Latitude,
+
+		[ValidateRange(-180,180)]
+		[Float] $Longitude,
+
 		[Parameter(ParameterSetName='APRS-IS')]
 		[ValidateSet(
 			'asia.aprs2.net', 'aunz.aprs2.net', 'euro.aprs2.net',
@@ -288,14 +344,20 @@ Function Send-APRSGroupBulletin
 		'Verbose' = $VerbosePreference
 		'Debug' = $DebugPreference
 	}
+	If ($Latitude -ne 0 -or $Longitude -ne 0)
+	{
+		$Arguments.Latitude = $Latitude
+		$Arguments.Longitude = $Longitude
+		$Location = " ($Latitude,$Longitude)"
+	}
 	If ($PSCmdlet.ParameterSetName -eq 'APRS-IS') {
 		$Arguments.Server = $Server
 		$Arguments.Port = $Port
 		$Arguments.Force = $Force
-		Write-Debug "From:$From To:$To Msg:$Message - sending to ${Server}:$Port (Force:$Force)"
+		Write-Debug "From:$From$Location To:$To Msg:$Message - sending to ${Server}:$Port (Force:$Force)"
 	}
 	Else {
-		Write-Debug "From:$From To:$To Msg:$Message - printing to screen"
+		Write-Debug "From:$From$Location To:$To Msg:$Message - printing to screen"
 	}
 	Return (Send-APRSThing @Arguments)
 }
@@ -320,6 +382,12 @@ Function Send-APRSAnnouncement
 		[ValidateLength(0,67)]
 		[ValidatePattern("[^~\|]*")]
 		[String] $Message,
+
+		[ValidateRange(-90,90)]
+		[Float] $Latitude,
+
+		[ValidateRange(-180,180)]
+		[Float] $Longitude,
 
 		[Parameter(ParameterSetName='APRS-IS')]
 		[ValidateSet(
@@ -347,14 +415,20 @@ Function Send-APRSAnnouncement
 		'Verbose' = $VerbosePreference
 		'Debug' = $DebugPreference
 	}
+	If ($Latitude -ne 0 -or $Longitude -ne 0)
+	{
+		$Arguments.Latitude = $Latitude
+		$Arguments.Longitude = $Longitude
+		$Location = " ($Latitude,$Longitude)"
+	}
 	If ($PSCmdlet.ParameterSetName -eq 'APRS-IS') {
 		$Arguments.Server = $Server
 		$Arguments.Port = $Port
 		$Arguments.Force = $Force
-		Write-Debug "From:$From To:$To Msg:$Message - sending to ${Server}:$Port (Force:$Force)"
+		Write-Debug "From:$From$Location To:$To Msg:$Message - sending to ${Server}:$Port (Force:$Force)"
 	}
 	Else {
-		Write-Debug "From:$From To:$To Msg:$Message - printing to screen"
+		Write-Debug "From:$From$Location To:$To Msg:$Message - printing to screen"
 	}
 	Return (Send-APRSThing @Arguments)
 }
@@ -423,4 +497,59 @@ Function Format-AsHex
 	)
 
 	Return "0x$('{0:X}' -f $Number)"
+}
+
+Function Convert-LongitudeToAPRSFormat
+{
+	[CmdletBinding()]
+	[OutputType([String])]
+	Param(
+		[Parameter(Mandatory, Position=0)]
+		[ValidateRange(-180,180)]
+		[Float] $Location
+	)
+
+	$ReturnValue = ""
+	$WasNegative = ($Location -lt 0)
+	$Location = [Math]::abs($Location)
+
+	# Process latitude degrees
+	$ReturnValue = [Math]::floor($Location).ToString().PadLeft(2,'0')
+	Write-Verbose "RetVal = `"$ReturnValue`""
+		
+	# Process latitude minutes
+	$DecimalPart = ($Location - [Math]::floor($Location)) * 60
+	$ReturnValue += [Math]::floor($DecimalPart).ToString().PadLeft(2,'0')
+	Write-Verbose "RetVal = `"$ReturnValue`""
+
+	# Process latitude seconds
+	$ReturnValue += '.'
+	$DecimalPart = ($DecimalPart - [Math]::floor($DecimalPart)) * 60
+	$ReturnValue += [Math]::round($DecimalPart).ToString().PadLeft(2,'0')
+	Write-Verbose "RetVal = `"$ReturnValue`""
+	
+	# Determine direction
+	If ($WasNegative) {
+		$ReturnValue += 'W'
+	}
+	Else {
+		$ReturnValue += 'E'
+	}
+
+	Return $ReturnValue.PadLeft(9,'0')
+}
+
+Function Convert-LatitudeToAPRSFormat
+{
+	[CmdletBinding()]
+	[OutputType([String])]
+	Param(
+		[Parameter(Mandatory, Position=0)]
+		[ValidateRange(-90,90)]
+		[Float] $Location
+	)
+
+	# Take .Substring(1) to chop off the leading zero.
+	$Result = Convert-LongitudeToAPRSFormat $Location -Verbose:$VerbosePreference
+	Return $Result.Substring(1) -Replace 'W','S' -Replace 'E','N'
 }

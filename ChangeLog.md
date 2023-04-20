@@ -1,5 +1,8 @@
 # Change Log for APRSMessenger
 
+## Version 1.1.0 (April 20, 2023)
+ -  NEW: All message types now support including position reports.  Use the `-Latitude` and `-Longitude` parameters to specify your location.
+
 ## Version 1.0.4 (March 29, 2023)
  -  FIXED: Corrected an issue where PowerShell Gallery would refuse to install the module on Windows platforms that require signed code per execution policy.  (This is also where Version 1.0.3 went.)  Thank you to `weq 🐳` from the PowerShell IRC channel/Discord server for helping me troubleshoot this.
  -  FIXED: Improved Markdown formatting of documentation files.

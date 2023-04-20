@@ -105,6 +105,20 @@ And, about group bulletins:
 If you're still not sure after reading all that, you should try sending bulletins, group bulletins, or announcements over your local area, and see how your radio and other peoples' radios handle them.
 
 
+## Position Reports
+To include a latitude and longitude with one of your messages, bulletins, announcements, or group announcements, specify the `-Latitude` and `-Longitude` parameters, along with your location in decimal format.
+
+For example, if I went to ARRL headquarters, I might tell my friend something like this:
+
+```powershell
+Send-APRSMessage -From 'W1DNS' -To 'FR1END' -Latitude 41.71479 -Longitude -72.72721 -Message "You'll never guess where I am!"
+```
+
+If you omit either `-Latitude` or `-Longitude`, that location will be zero.
+
+Due to limitations of the app, you cannot send a position report from exactly 0°,0°.
+
+
 ## Example: Putting It All Together
 Here is an example where you could use APRS messaging to manage a club's weather station.  Let's assume that a hypothetical `Get-WeatherStationData` cmdlet returns all of your collected weather data at any given moment, and the following script runs once per minute.  For brevity, I am omitting APRS-IS connection data.
 

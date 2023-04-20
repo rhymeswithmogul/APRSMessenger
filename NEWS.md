@@ -1,5 +1,8 @@
 # News for APRSMessenger
 
+## Version 1.1.0 (April 20, 2023)
+We've added the ability to include position reports in your messages, bulletins, and announcements.  Simply use the `-Latitude` and `-Longitude` parameters to include them.  Then, they will show up on sites like [APRS.fi](https://APRS.fi).
+
 ## Version 1.0.4 (March 29, 2023)
 In this version, we've signed the PowerShell Gallery version of this code so that it can load on platforms that require code signing in the execution policy.  Some Pester tests were also added to ensure the module is well-formed.
 
