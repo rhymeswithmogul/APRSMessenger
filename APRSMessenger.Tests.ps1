@@ -92,7 +92,7 @@ Describe 'Send-APRSMessage' {
 			| Should -Be "N0CALL>EMAIL,TCPIP*::EMAIL    :$ExampleEmail"
 	}
 	It 'Creates a valid message with position information.' {
-		Send-APRSMessage -From 'N0CALL' -To 'PESTR' -Message 'Position test' -Latitude 12.345 -Longitude -67.890
+		Send-APRSMessage -From 'N0CALL' -To 'PESTR' -Message 'Position test' -Latitude 12.345 -Longitude -67.890 `
 			| Should -Be "N0CALL>PESTR,TCPIP*:=1220.42N/06753.24W`"PESTR    :Position test"
 	}
 }
@@ -111,7 +111,7 @@ Describe 'Send-APRSAnnouncement' {
 			| Should -Be "N0CALL>BLNQ,TCPIP*::BLNQ     :$ExampleAnnouncement"
 	}
 	It 'Creates a valid announcement with position information.' {
-		Send-APRSAnnouncement -From 'N0CALL' -AnnouncementID 'P' -Message 'Position test' -Latitude 12.345 -Longitude -67.890
+		Send-APRSAnnouncement -From 'N0CALL' -AnnouncementID 'P' -Message 'Position test' -Latitude 12.345 -Longitude -67.890 `
 			| Should -Be "N0CALL>BLNP,TCPIP*:=1220.42N/06753.24W`"BLNP     :Position test"
 	}
 }
@@ -126,7 +126,7 @@ Describe 'Send-APRSBulletin' {
 			| Should -Be "N0CALL>BLN3,TCPIP*::BLN3     :$ExampleBulletin"
 	}
 	It 'Generates a valid bulletin with position information.' {
-		Send-APRSBulletin -From 'N0CALL' -BulletinID '9' -Message 'Position test' -Longitude 123.45678 -Latitude 90
+		Send-APRSBulletin -From 'N0CALL' -BulletinID '9' -Message 'Position test' -Longitude 123.45678 -Latitude 90 `
 			| Should -Be "N0CALL>BLN9,TCPIP*:=9000.00N/12327.24E`"BLN9     :Position test"
 	}
 }
@@ -141,7 +141,7 @@ Describe 'Send-APRSGroupBulletin' {
 			| Should -Be "N0CALL>BLN4,TCPIP*::BLN4WX   :$ExampleGroupBulletin"
 	}
 	It 'Generates a valid group bulletin with position information.' {
-		Send-APRSGroupBulletin -From 'N0CALL' -BulletinID '9' -GroupName 'PESTR' -Message 'Position test' -Latitude 12.345 -Longitude -67.890
+		Send-APRSGroupBulletin -From 'N0CALL' -BulletinID '9' -GroupName 'PESTR' -Message 'Position test' -Latitude 12.345 -Longitude -67.890 `
 			| Should -Be "N0CALL>BLN9,TCPIP*:=1220.42N/06753.24W`"BLN9PESTR:Position test"
 	}
 }
