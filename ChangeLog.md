@@ -1,5 +1,8 @@
 # Change Log for APRSMessenger
 
+## Version 1.1.1
+ -  FIXED: Pester tests again run on Windows PowerShell.
+
 ## Version 1.1.0 (April 20, 2023)
  -  NEW: All message types now support including position reports.  Use the `-Latitude` and `-Longitude` parameters to specify your location.
 
