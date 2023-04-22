@@ -31,11 +31,16 @@ Write-Output "Copying module to $DestinationPath"
 New-Item -Path $DestinationPath -ItemType Directory -ErrorAction Stop
 Copy-Item -Path . -Destination $DestinationPath -Recurse -Exclude @(
 	'.git*',		# This can be retrieved from GitHub.
-	'coverage.xml'	# junk
-	'icon',			# An icon URI is contained in the module manifest.
+	'coverage.xml',	# junk
 	'man',			# Get-Help should be used instead.
-	'release',		# You don't need this script.  Only I do.
-	'INSTALL.md'	# Install-Module handles installation for the user.
+	'release'		# You don't need this script.  Only I do.
+
+	# We only need the PNG icon.
+	'icon/APRSMessenger.avif',
+	'icon/APRSMessenger.jxl',
+	'icon/APRSMessenger.webp',
+	'icon/APRSMessenger.xcf',
+	'icon/README.md'
 )
 Push-Location -Path (Join-Path -Path $DestinationPath -ChildPath 'APRSMessenger')
 #endregion
